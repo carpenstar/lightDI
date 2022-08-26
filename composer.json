@@ -1,0 +1,14 @@
+{
+  "autoload": {
+    "psr-4": {
+      "DependencyInjection\\": "src/",
+      "Examples\\": "example/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5"
+  },
+  "require": {
+    "ext-yaml": "*"
+  }
+}
