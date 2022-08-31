@@ -5,22 +5,27 @@ use DependencyInjection\System\Interfaces\ISystemConfigInterface;
 
 class SystemConfig implements ISystemConfigInterface
 {
-    /** @var string $serviceConfigFilePath*/
-    private string $serviceConfigFilePath;
+    /** @var string $configPath */
+    private string $configPath;
+
+    public function __construct(array $arrSettings)
+    {
+        $this->setConfigFilePath($arrSettings["config_path"]);
+    }
 
     /** @return string */
-    public function getServiceConfigFilePath(): string
+    public function getConfigFilePath(): string
     {
-        return $this->serviceConfigFilePath;
+        return $this->configPath;
     }
 
     /**
      * @param string $serviceConfigFilePath
      * @return $this
      */
-    public function setServiceConfigFilePath(string $serviceConfigFilePath): self
+    private function setConfigFilePath(string $serviceConfigFilePath): self
     {
-        $this->serviceConfigFilePath = $serviceConfigFilePath;
+        $this->configPath = $serviceConfigFilePath;
         return $this;
     }
 }

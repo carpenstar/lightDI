@@ -9,6 +9,7 @@
     "phpunit/phpunit": "^9.5"
   },
   "require": {
-    "ext-yaml": "*"
+    "ext-yaml": "*",
+    "ext-simplexml": "*"
   }
 }

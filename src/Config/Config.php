@@ -13,9 +13,6 @@ use DependencyInjection\File\Interfaces\IFileLoaderInterface;
 
 class Config implements IConfigInterface
 {
-    /** @var string $filePath */
-    private string $filePath;
-
     /** @var array $config */
     private array $config = [];
 
@@ -28,18 +25,19 @@ class Config implements IConfigInterface
     /** @param ConfigFabricAdditional $args */
     public function __construct(IFabricAdditionalInterface $args)
     {
-        $this->setFilePath($args->getServiceConfigFilePath());
-        $this->buildLoader($args->getFileLoaderClassName());
-        $this->setConfigBuilder($args->getConfigBuilderClassName());
+        $filePath = $args->getServiceConfigFilePath();
+        $fileLoaderClass = $args->getFileLoaderClassName();
+        $configBuilderClass = $args->getConfigBuilderClassName();
+
+        $this->loader = FileLoaderFabric::make($fileLoaderClass)->setFilePath($filePath);
+        $this->configBuilder = ConfigBuilderFabric::make($configBuilderClass);
     }
 
     /** @return $this */
     public function build(): self
     {
-        $this->config = $this->configBuilder->build(
-            $this->loader->load()
-        );
-
+        $dataFromFile = $this->loader->load();
+        $this->config = $this->configBuilder->build($dataFromFile);
         return $this;
     }
 
@@ -89,29 +87,4 @@ class Config implements IConfigInterface
 
         return $serviceList;
     }
-
-    /**
-     * @param string $filePath
-     * @return IConfigInterface
-     */
-    protected function setFilePath(string $filePath): IConfigInterface
-    {
-        $this->filePath = $filePath;
-        return $this;
-    }
-
-    /** @return $this */
-    protected function buildLoader(string $fileLoaderClassName): self
-    {
-        $this->loader = FileLoaderFabric::make($fileLoaderClassName)->setFilePath($this->filePath);
-        return $this;
-    }
-
-    /** @return $this */
-    protected function setConfigBuilder(string $configBuilderClassName): self
-    {
-        $this->configBuilder = ConfigBuilderFabric::make($configBuilderClassName);
-        return $this;
-    }
-
 }

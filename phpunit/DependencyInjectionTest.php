@@ -2,14 +2,10 @@
 use PHPUnit\Framework\TestCase;
 use DependencyInjection\Config\Builder\ConfigBuilder;
 use DependencyInjection\Fabrics\ConfigBuilder\ConfigBuilderFabric;
-use DependencyInjection\Fabrics\Config\ConfigFabric;
 use DependencyInjection\Fabrics\FileLoader\FileLoaderFabric;
 use DependencyInjection\File\XmlFileLoader;
 use DependencyInjection\File\YmlFileLoader;
-use DependencyInjection\Config\Interfaces\IConfigInterface;
 use DependencyInjection\DependencyInjection;
-use DependencyInjection\Config\Config;
-use DependencyInjection\Fabrics\Config\ConfigFabricAdditional;
 use DependencyInjection\System\SystemConfig;
 
 class DependencyInjectionTest extends TestCase
@@ -18,12 +14,17 @@ class DependencyInjectionTest extends TestCase
     const FILE_PATH_CONFIG_YML = "/app/config/config.yml";
     const FILE_PATH_CONFIG_XML = "/app/config/config.xml";
 
+    const CONFIG_DATA_YML = [
+        "config_path" => "/app/config/config.yml"
+    ];
+
+    const CONFIG_DATA_XML = [
+        "config_path" => "/app/config/config.xml"
+    ];
 
     public function testSysConfig()
     {
-        $sysConfig = new SystemConfig();
-        $sysConfig->setServiceConfigFilePath(self::FILE_PATH_CONFIG_YML);
-
+        $sysConfig = new SystemConfig(self::CONFIG_DATA_YML);
         $this->assertInstanceOf(SystemConfig::class, $sysConfig);
         return $sysConfig;
     }
@@ -34,7 +35,7 @@ class DependencyInjectionTest extends TestCase
     {
         /** @var YmlFileLoader $ymlLoader */
         $ymlLoader = FileLoaderFabric::make(YmlFileLoader::class);
-        $ymlLoader->setFilePath(self::FILE_PATH_CONFIG_YML);
+        $ymlLoader->setFilePath(self::CONFIG_DATA_YML["config_path"]);
 
         $this->assertInstanceOf(YmlFileLoader::class, $ymlLoader);
     }
@@ -44,7 +45,7 @@ class DependencyInjectionTest extends TestCase
     {
         /** @var XmlFileLoader $xmlLoader */
         $xmlLoader = FileLoaderFabric::make(XmlFileLoader::class);
-        $xmlLoader->setFilePath(self::FILE_PATH_CONFIG_XML);
+        $xmlLoader->setFilePath(self::CONFIG_DATA_XML["config_path"]);
 
         $this->assertInstanceOf(XmlFileLoader::class, $xmlLoader);
     }
@@ -54,38 +55,6 @@ class DependencyInjectionTest extends TestCase
     {
         $configBuilderInstance = ConfigBuilderFabric::make(ConfigBuilder::class);
         $this->assertInstanceOf(ConfigBuilder::class, $configBuilderInstance);
-    }
-
-    /**
-     * Тестирование создания обьекта конфигурации при помощи yml-лоадера
-     */
-    public function testCreateYMLConfigurationArray()
-    {
-        $additional = (new ConfigFabricAdditional())
-            ->setServiceConfigFilePath(self::FILE_PATH_CONFIG_YML)
-            ->setFileLoaderClassName(YmlFileLoader::class)
-            ->setConfigBuilderClassName(ConfigBuilder::class);
-
-        $config = ConfigFabric::make(Config::class, $additional);
-        $this->assertInstanceOf(IConfigInterface::class, $config);
-
-        $config->build();
-
-        $this->assertNotEmpty($config->getParameters());
-        $this->assertNotEmpty($config->getServices());
-    }
-
-    /**
-     * Тестирование извлечения обьекта сервиса
-     * @depends testSysConfig
-     */
-    public function testDependencyInjection(SystemConfig $sysConfig)
-    {
-        $depInjection = new DependencyInjection($sysConfig);
-        $this->assertInstanceOf(DependencyInjection::class, $depInjection);
-
-        $testObject = $depInjection->getService(self::CONTAINER_ID);
-        $this->assertInstanceOf(\Examples\Request::class, $testObject);
     }
 
     /**
