@@ -1,7 +1,7 @@
 <?php
-namespace DependencyInjection\File;
+namespace Carpenstar\DependencyInjection\File;
 
-use DependencyInjection\File\Abstracts\AFileLoader;
+use Carpenstar\DependencyInjection\File\Abstracts\AFileLoader;
 
 class XmlFileLoader extends AFileLoader
 {

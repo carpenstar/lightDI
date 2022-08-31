@@ -1,10 +1,10 @@
 <?php
-namespace DependencyInjection\Network\Abstracts;
+namespace Carpenstar\DependencyInjection\Network\Abstracts;
 
-use DependencyInjection\Config\Interfaces\IConfigInterface;
-use DependencyInjection\Fabrics\IFabricAdditionalInterface;
-use DependencyInjection\Network\Interfaces\INetworkInterface;
-use DependencyInjection\ServiceManager\Interfaces\IServiceManagerInterface;
+use Carpenstar\DependencyInjection\Config\Interfaces\IConfigInterface;
+use Carpenstar\DependencyInjection\Fabrics\IFabricAdditionalInterface;
+use Carpenstar\DependencyInjection\Network\Interfaces\INetworkInterface;
+use Carpenstar\DependencyInjection\ServiceManager\Interfaces\IServiceManagerInterface;
 
 abstract class ANetwork implements INetworkInterface
 {

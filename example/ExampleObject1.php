@@ -1,5 +1,5 @@
 <?php
-namespace Examples;
+namespace Carpenstar\Examples;
 
 class ExampleObject1
 {

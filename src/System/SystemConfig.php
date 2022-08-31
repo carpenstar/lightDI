@@ -1,7 +1,7 @@
 <?php
-namespace DependencyInjection\System;
+namespace Carpenstar\DependencyInjection\System;
 
-use DependencyInjection\System\Interfaces\ISystemConfigInterface;
+use Carpenstar\DependencyInjection\System\Interfaces\ISystemConfigInterface;
 
 class SystemConfig implements ISystemConfigInterface
 {

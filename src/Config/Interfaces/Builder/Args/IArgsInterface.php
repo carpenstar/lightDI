@@ -1,5 +1,5 @@
 <?php
-namespace DependencyInjection\Config\Interfaces\Builder\Args;
+namespace Carpenstar\DependencyInjection\Config\Interfaces\Builder\Args;
 
 interface IArgsInterface
 {

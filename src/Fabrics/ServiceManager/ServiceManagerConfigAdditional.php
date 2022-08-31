@@ -1,8 +1,8 @@
 <?php
-namespace DependencyInjection\Fabrics\ServiceManager;
+namespace Carpenstar\DependencyInjection\Fabrics\ServiceManager;
 
-use DependencyInjection\Config\Interfaces\IConfigInterface;
-use DependencyInjection\Fabrics\ABaseConfigAdditional;
+use Carpenstar\DependencyInjection\Config\Interfaces\IConfigInterface;
+use Carpenstar\DependencyInjection\Fabrics\ABaseConfigAdditional;
 
 class ServiceManagerConfigAdditional extends ABaseConfigAdditional
 {

@@ -1,8 +1,8 @@
 <?php
-namespace DependencyInjection\Fabrics\FileLoader;
+namespace Carpenstar\DependencyInjection\Fabrics\FileLoader;
 
-use DependencyInjection\Fabrics\AFabric;
-use DependencyInjection\File\Interfaces\IFileLoaderInterface;
+use Carpenstar\DependencyInjection\Fabrics\AFabric;
+use Carpenstar\DependencyInjection\File\Interfaces\IFileLoaderInterface;
 
 class FileLoaderFabric extends AFabric
 {

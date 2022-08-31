@@ -1,9 +1,9 @@
 <?php
-namespace DependencyInjection\Fabrics\ServiceCollection;
+namespace Carpenstar\DependencyInjection\Fabrics\ServiceCollection;
 
-use DependencyInjection\Container\Interfaces\IServiceCollectionInterface;
-use DependencyInjection\Fabrics\AFabric;
-use DependencyInjection\Fabrics\IFabricAdditionalInterface;
+use Carpenstar\DependencyInjection\Container\Interfaces\IServiceCollectionInterface;
+use Carpenstar\DependencyInjection\Fabrics\AFabric;
+use Carpenstar\DependencyInjection\Fabrics\IFabricAdditionalInterface;
 
 class ServiceCollectionFabric extends AFabric
 {

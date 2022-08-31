@@ -1,15 +1,28 @@
 {
-  "autoload": {
-    "psr-4": {
-      "DependencyInjection\\": "src/",
-      "Examples\\": "example/"
+  "name": "carpenstar/lightdi",
+  "type": "library",
+  "description": "Dependency Injection System",
+  "keywords": ["dependency injection"],
+  "homepage": "https://github.com/carpenstar/lightDI",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Vladislav Popov",
+      "email": "mighty.vlad@gmail.com",
+      "homepage": "https://github.com/carpenstar",
+      "role": "Developer"
     }
+  ],
+  "require": {
+    "php": ">=7.4.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^9.5"
   },
-  "require": {
-    "ext-yaml": "*",
-    "ext-simplexml": "*"
+  "autoload": {
+    "psr-4": {
+      "Carpenstar\\DependencyInjection\\": "src/",
+      "Carpenstar\\Examples\\": "example/"
+    }
   }
 }

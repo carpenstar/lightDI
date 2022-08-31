@@ -1,5 +1,5 @@
 <?php
-namespace DependencyInjection\Network\Interfaces;
+namespace Carpenstar\DependencyInjection\Network\Interfaces;
 
 interface INetworkInterface
 {

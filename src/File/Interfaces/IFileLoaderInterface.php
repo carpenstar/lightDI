@@ -1,5 +1,5 @@
 <?php
-namespace DependencyInjection\File\Interfaces;
+namespace Carpenstar\DependencyInjection\File\Interfaces;
 
 interface IFileLoaderInterface
 {

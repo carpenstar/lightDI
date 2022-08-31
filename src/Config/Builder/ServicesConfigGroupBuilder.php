@@ -1,9 +1,9 @@
 <?php
-namespace DependencyInjection\Config\Builder;
+namespace Carpenstar\DependencyInjection\Config\Builder;
 
-use DependencyInjection\Config\Args\ServiceArgs;
-use DependencyInjection\Fabrics\ConfigBuilder\ConfigBuilderArguments;
-use DependencyInjection\Config\Interfaces\Builder\IHandlerGroupBuilder;
+use Carpenstar\DependencyInjection\Config\Args\ServiceArgs;
+use Carpenstar\DependencyInjection\Fabrics\ConfigBuilder\ConfigBuilderArguments;
+use Carpenstar\DependencyInjection\Config\Interfaces\Builder\IHandlerGroupBuilder;
 
 class ServicesConfigGroupBuilder implements IHandlerGroupBuilder
 {

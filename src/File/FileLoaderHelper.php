@@ -1,7 +1,7 @@
 <?php
-namespace DependencyInjection\File;
+namespace Carpenstar\DependencyInjection\File;
 
-use DependencyInjection\File\Interfaces\IFileLoaderInterface;
+use Carpenstar\DependencyInjection\File\Interfaces\IFileLoaderInterface;
 
 class FileLoaderHelper
 {
@@ -11,7 +11,7 @@ class FileLoaderHelper
         $explodedFileName = explode(".", $filePathArray[count($filePathArray) - 1]);
         $fileExtension = $explodedFileName[count($explodedFileName) - 1];
 
-        $fileLoaderClass = "DependencyInjection\File\\" . ucfirst($fileExtension) . "FileLoader";
+        $fileLoaderClass = "Carpenstar\DependencyInjection\File\\" . ucfirst($fileExtension) . "FileLoader";
 
         if (($class = new $fileLoaderClass()) instanceof IFileLoaderInterface) {
             return get_class($class);

@@ -1,8 +1,8 @@
 <?php
-namespace DependencyInjection\Fabrics\ConfigBuilder;
+namespace Carpenstar\DependencyInjection\Fabrics\ConfigBuilder;
 
-use DependencyInjection\Config\Interfaces\Builder\Args\IArgsInterface;
-use DependencyInjection\Fabrics\ABaseConfigArguments;
+use Carpenstar\DependencyInjection\Config\Interfaces\Builder\Args\IArgsInterface;
+use Carpenstar\DependencyInjection\Fabrics\ABaseConfigArguments;
 
 class ConfigBuilderArguments extends ABaseConfigArguments
 {

@@ -1,8 +1,8 @@
 <?php
-namespace DependencyInjection\Fabrics\ServiceItem;
+namespace Carpenstar\DependencyInjection\Fabrics\ServiceItem;
 
-use DependencyInjection\Config\Args\ServiceArgs;
-use DependencyInjection\Fabrics\ABaseConfigAdditional;
+use Carpenstar\DependencyInjection\Config\Args\ServiceArgs;
+use Carpenstar\DependencyInjection\Fabrics\ABaseConfigAdditional;
 
 class ServiceItemAdditional extends ABaseConfigAdditional
 {
