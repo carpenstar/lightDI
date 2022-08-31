@@ -1,6 +1,5 @@
 networks:
   - main
-  - isolated
 
 parameters:
   db.login: root
@@ -9,7 +8,7 @@ parameters:
 services:
   component.db_default:
     network: main
-    class: \Examples\Request
+    class: \Examples\ExampleObject1
     parameters:
       - '%db.login'
       - '%db.password'
@@ -17,8 +16,8 @@ services:
 
 
   component.db_alt:
-    network: isolated
-    class: \Examples\Request2
+    network: main
+    class: \Examples\ExampleObject2
     parameters:
       - '%db.login'
       - '%db.password'

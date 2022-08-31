@@ -1,7 +1,7 @@
 <?php
 namespace Examples;
 
-class Request
+class ExampleObject1
 {
     private $mode;
 
@@ -9,7 +9,7 @@ class Request
 
     private $request;
 
-    public function __construct(string $mode, string $test, Request2 $request)
+    public function __construct(string $mode, string $test, ExampleObject2 $request)
     {
         $this->mode = $mode;
         $this->test = $test;

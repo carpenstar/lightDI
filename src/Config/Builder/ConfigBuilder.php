@@ -24,7 +24,6 @@ class ConfigBuilder implements IConfigBuilderInterface
         foreach ($data as $keyGroup => $valGroup) {
             if (array_key_exists($keyGroup, static::getGroups())) {
                 $handler = static::getGroups()[$keyGroup];
-                // todo вынести в фабрику
                 $config[$keyGroup] = (new $handler())->build($valGroup);
             }
         }

@@ -2,7 +2,7 @@
 
 namespace Examples;
 
-class Request2
+class ExampleObject2
 {
     private $var;
 

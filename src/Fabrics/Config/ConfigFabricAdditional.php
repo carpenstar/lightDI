@@ -1,9 +1,9 @@
 <?php
 namespace DependencyInjection\Fabrics\Config;
 
-use DependencyInjection\Fabrics\IFabricAdditionalInterface;
+use DependencyInjection\Fabrics\ABaseConfigAdditional;
 
-class ConfigFabricAdditional implements IFabricAdditionalInterface
+class ConfigFabricAdditional extends ABaseConfigAdditional
 {
     /** @var string $serviceConfigFilePath */
     private string $serviceConfigFilePath;

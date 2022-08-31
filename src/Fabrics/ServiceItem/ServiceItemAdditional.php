@@ -2,9 +2,9 @@
 namespace DependencyInjection\Fabrics\ServiceItem;
 
 use DependencyInjection\Config\Args\ServiceArgs;
-use DependencyInjection\Fabrics\IFabricAdditionalInterface;
+use DependencyInjection\Fabrics\ABaseConfigAdditional;
 
-class ServiceItemAdditional implements IFabricAdditionalInterface
+class ServiceItemAdditional extends ABaseConfigAdditional
 {
     /** @var ServiceArgs $serviceArgs */
     private ServiceArgs $serviceArgs;

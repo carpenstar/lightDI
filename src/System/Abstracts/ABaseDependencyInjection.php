@@ -54,8 +54,8 @@ abstract class ABaseDependencyInjection implements IDependencyInjectionInterface
     /** @param ISystemConfigInterface $sysConfig */
     public function __construct(ISystemConfigInterface $sysConfig)
     {
-        $this->filePathServiceConfig = $sysConfig->getServiceConfigFilePath();
-        $this->fileLoaderClassName = FileLoaderHelper::getFileLoaderClassName($sysConfig->getServiceConfigFilePath());
+        $this->filePathServiceConfig = $sysConfig->getConfigFilePath();
+        $this->fileLoaderClassName = FileLoaderHelper::getFileLoaderClassName($sysConfig->getConfigFilePath());
         $this->configBuilderClassName = ConfigBuilder::class;
 
         $this->buildServiceConfig();
