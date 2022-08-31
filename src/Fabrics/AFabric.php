@@ -1,5 +1,5 @@
 <?php
-namespace DependencyInjection\Fabrics;
+namespace Carpenstar\DependencyInjection\Fabrics;
 
 abstract class AFabric implements IFabricInterface
 {

@@ -1,7 +1,7 @@
 <?php
-namespace DependencyInjection\Container\Interfaces;
+namespace Carpenstar\DependencyInjection\Container\Interfaces;
 
-use DependencyInjection\Config\Args\ServiceArgs;
+use Carpenstar\DependencyInjection\Config\Args\ServiceArgs;
 
 interface IServiceItemInterface
 {

@@ -1,8 +1,8 @@
 <?php
-namespace DependencyInjection;
+namespace Carpenstar\DependencyInjection;
 
-use DependencyInjection\Network\Interfaces\INetworkInterface;
-use DependencyInjection\System\Abstracts\ABaseDependencyInjection;
+use Carpenstar\DependencyInjection\Network\Interfaces\INetworkInterface;
+use Carpenstar\DependencyInjection\System\Abstracts\ABaseDependencyInjection;
 
 
 class DependencyInjection extends ABaseDependencyInjection

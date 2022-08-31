@@ -1,9 +1,9 @@
 <?php
-namespace DependencyInjection\Fabrics\Config;
+namespace Carpenstar\DependencyInjection\Fabrics\Config;
 
-use DependencyInjection\Config\Interfaces\IConfigInterface;
-use DependencyInjection\Fabrics\AFabric;
-use DependencyInjection\Fabrics\IFabricAdditionalInterface;
+use Carpenstar\DependencyInjection\Config\Interfaces\IConfigInterface;
+use Carpenstar\DependencyInjection\Fabrics\AFabric;
+use Carpenstar\DependencyInjection\Fabrics\IFabricAdditionalInterface;
 
 class ConfigFabric extends AFabric
 {

@@ -1,22 +1,22 @@
 <?php
-namespace DependencyInjection\System\Abstracts;
+namespace Carpenstar\DependencyInjection\System\Abstracts;
 
-use DependencyInjection\Config\Builder\ConfigBuilder;
-use DependencyInjection\Config\Config;
-use DependencyInjection\Fabrics\Config\ConfigFabric;
-use DependencyInjection\Fabrics\Config\ConfigFabricAdditional;
-use DependencyInjection\Config\Interfaces\IConfigInterface;
-use DependencyInjection\Fabrics\Network\NetworkConfigAdditional;
-use DependencyInjection\Fabrics\Network\NetworkFabric;
-use DependencyInjection\File\FileLoaderHelper;
-use DependencyInjection\Network\Interfaces\INetworkInterface;
-use DependencyInjection\Network\Network;
-use DependencyInjection\Fabrics\ServiceManager\ServiceManagerFabric;
-use DependencyInjection\ServiceManager\Interfaces\IServiceManagerInterface;
-use DependencyInjection\ServiceManager\ServiceManager;
-use DependencyInjection\Fabrics\ServiceManager\ServiceManagerConfigAdditional;
-use DependencyInjection\System\Interfaces\IDependencyInjectionInterface;
-use DependencyInjection\System\Interfaces\ISystemConfigInterface;
+use Carpenstar\DependencyInjection\Config\Builder\ConfigBuilder;
+use Carpenstar\DependencyInjection\Config\Config;
+use Carpenstar\DependencyInjection\Fabrics\Config\ConfigFabric;
+use Carpenstar\DependencyInjection\Fabrics\Config\ConfigFabricAdditional;
+use Carpenstar\DependencyInjection\Config\Interfaces\IConfigInterface;
+use Carpenstar\DependencyInjection\Fabrics\Network\NetworkConfigAdditional;
+use Carpenstar\DependencyInjection\Fabrics\Network\NetworkFabric;
+use Carpenstar\DependencyInjection\File\FileLoaderHelper;
+use Carpenstar\DependencyInjection\Network\Interfaces\INetworkInterface;
+use Carpenstar\DependencyInjection\Network\Network;
+use Carpenstar\DependencyInjection\Fabrics\ServiceManager\ServiceManagerFabric;
+use Carpenstar\DependencyInjection\ServiceManager\Interfaces\IServiceManagerInterface;
+use Carpenstar\DependencyInjection\ServiceManager\ServiceManager;
+use Carpenstar\DependencyInjection\Fabrics\ServiceManager\ServiceManagerConfigAdditional;
+use Carpenstar\DependencyInjection\System\Interfaces\IDependencyInjectionInterface;
+use Carpenstar\DependencyInjection\System\Interfaces\ISystemConfigInterface;
 
 abstract class ABaseDependencyInjection implements IDependencyInjectionInterface
 {

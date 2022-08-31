@@ -1,11 +1,11 @@
 <?php
-namespace DependencyInjection\ServiceManager\Abstracts;
+namespace Carpenstar\DependencyInjection\ServiceManager\Abstracts;
 
-use DependencyInjection\Config\Interfaces\IConfigInterface;
-use DependencyInjection\Fabrics\IFabricAdditionalInterface;
-use DependencyInjection\Container\Interfaces\IServiceCollectionInterface;
-use DependencyInjection\Fabrics\ServiceManager\ServiceManagerConfigAdditional;
-use DependencyInjection\ServiceManager\Interfaces\IServiceManagerInterface;
+use Carpenstar\DependencyInjection\Config\Interfaces\IConfigInterface;
+use Carpenstar\DependencyInjection\Fabrics\IFabricAdditionalInterface;
+use Carpenstar\DependencyInjection\Container\Interfaces\IServiceCollectionInterface;
+use Carpenstar\DependencyInjection\Fabrics\ServiceManager\ServiceManagerConfigAdditional;
+use Carpenstar\DependencyInjection\ServiceManager\Interfaces\IServiceManagerInterface;
 
 abstract class ABaseServiceManager implements IServiceManagerInterface
 {

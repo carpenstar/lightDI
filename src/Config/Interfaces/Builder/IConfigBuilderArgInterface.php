@@ -1,7 +1,7 @@
 <?php
-namespace DependencyInjection\Config\Interfaces\Builder;
+namespace Carpenstar\DependencyInjection\Config\Interfaces\Builder;
 
-use DependencyInjection\Config\Interfaces\Builder\Args\IArgsInterface;
+use Carpenstar\DependencyInjection\Config\Interfaces\Builder\Args\IArgsInterface;
 
 interface IConfigBuilderArgInterface
 {

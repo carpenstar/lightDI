@@ -1,9 +1,9 @@
 <?php
-namespace DependencyInjection\System\Interfaces;
+namespace Carpenstar\DependencyInjection\System\Interfaces;
 
-use DependencyInjection\Config\Interfaces\IConfigInterface;
-use DependencyInjection\Network\Interfaces\INetworkInterface;
-use DependencyInjection\ServiceManager\Interfaces\IServiceManagerInterface;
+use Carpenstar\DependencyInjection\Config\Interfaces\IConfigInterface;
+use Carpenstar\DependencyInjection\Network\Interfaces\INetworkInterface;
+use Carpenstar\DependencyInjection\ServiceManager\Interfaces\IServiceManagerInterface;
 
 interface IDependencyInjectionInterface
 {

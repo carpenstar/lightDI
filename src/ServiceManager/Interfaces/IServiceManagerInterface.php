@@ -1,7 +1,7 @@
 <?php
-namespace DependencyInjection\ServiceManager\Interfaces;
+namespace Carpenstar\DependencyInjection\ServiceManager\Interfaces;
 
-use DependencyInjection\Fabrics\IFabricAdditionalInterface;
+use Carpenstar\DependencyInjection\Fabrics\IFabricAdditionalInterface;
 
 interface IServiceManagerInterface
 {

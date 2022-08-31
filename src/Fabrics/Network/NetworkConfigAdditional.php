@@ -1,9 +1,9 @@
 <?php
-namespace DependencyInjection\Fabrics\Network;
+namespace Carpenstar\DependencyInjection\Fabrics\Network;
 
-use DependencyInjection\Config\Interfaces\IConfigInterface;
-use DependencyInjection\Fabrics\ABaseConfigAdditional;
-use DependencyInjection\ServiceManager\Interfaces\IServiceManagerInterface;
+use Carpenstar\DependencyInjection\Config\Interfaces\IConfigInterface;
+use Carpenstar\DependencyInjection\Fabrics\ABaseConfigAdditional;
+use Carpenstar\DependencyInjection\ServiceManager\Interfaces\IServiceManagerInterface;
 
 class NetworkConfigAdditional extends ABaseConfigAdditional
 {

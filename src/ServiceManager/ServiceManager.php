@@ -1,15 +1,15 @@
 <?php
-namespace DependencyInjection\ServiceManager;
+namespace Carpenstar\DependencyInjection\ServiceManager;
 
-use DependencyInjection\Config\Args\ServiceArgs;
-use DependencyInjection\Container\ServiceCollection;
-use DependencyInjection\Fabrics\ServiceCollection\ServiceCollectionFabric;
-use DependencyInjection\Fabrics\ServiceItem\ServiceItemAdditional;
-use DependencyInjection\Fabrics\ServiceItem\ServiceItemFabric;
-use DependencyInjection\Fabrics\ServiceManager\ServiceManagerConfigAdditional;
-use DependencyInjection\Container\ServiceItem;
-use DependencyInjection\Fabrics\IFabricAdditionalInterface;
-use DependencyInjection\ServiceManager\Abstracts\ABaseServiceManager;
+use Carpenstar\DependencyInjection\Config\Args\ServiceArgs;
+use Carpenstar\DependencyInjection\Container\ServiceCollection;
+use Carpenstar\DependencyInjection\Fabrics\ServiceCollection\ServiceCollectionFabric;
+use Carpenstar\DependencyInjection\Fabrics\ServiceItem\ServiceItemAdditional;
+use Carpenstar\DependencyInjection\Fabrics\ServiceItem\ServiceItemFabric;
+use Carpenstar\DependencyInjection\Fabrics\ServiceManager\ServiceManagerConfigAdditional;
+use Carpenstar\DependencyInjection\Container\ServiceItem;
+use Carpenstar\DependencyInjection\Fabrics\IFabricAdditionalInterface;
+use Carpenstar\DependencyInjection\ServiceManager\Abstracts\ABaseServiceManager;
 
 class ServiceManager extends ABaseServiceManager
 {

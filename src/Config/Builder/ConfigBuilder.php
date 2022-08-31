@@ -1,7 +1,7 @@
 <?php
-namespace DependencyInjection\Config\Builder;
+namespace Carpenstar\DependencyInjection\Config\Builder;
 
-use DependencyInjection\Config\Interfaces\Builder\IConfigBuilderInterface;
+use Carpenstar\DependencyInjection\Config\Interfaces\Builder\IConfigBuilderInterface;
 
 class ConfigBuilder implements IConfigBuilderInterface
 {

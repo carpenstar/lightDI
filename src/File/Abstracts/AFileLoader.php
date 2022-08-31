@@ -1,7 +1,7 @@
 <?php
-namespace DependencyInjection\File\Abstracts;
+namespace Carpenstar\DependencyInjection\File\Abstracts;
 
-use DependencyInjection\File\Interfaces\IFileLoaderInterface;
+use Carpenstar\DependencyInjection\File\Interfaces\IFileLoaderInterface;
 
 abstract class AFileLoader implements IFileLoaderInterface
 {

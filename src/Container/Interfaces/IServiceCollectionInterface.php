@@ -1,5 +1,5 @@
 <?php
-namespace DependencyInjection\Container\Interfaces;
+namespace Carpenstar\DependencyInjection\Container\Interfaces;
 
 interface IServiceCollectionInterface
 {

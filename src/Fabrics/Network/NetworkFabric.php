@@ -1,9 +1,9 @@
 <?php
-namespace DependencyInjection\Fabrics\Network;
+namespace Carpenstar\DependencyInjection\Fabrics\Network;
 
-use DependencyInjection\Fabrics\AFabric;
-use DependencyInjection\Fabrics\IFabricAdditionalInterface;
-use DependencyInjection\Network\Interfaces\INetworkInterface;
+use Carpenstar\DependencyInjection\Fabrics\AFabric;
+use Carpenstar\DependencyInjection\Fabrics\IFabricAdditionalInterface;
+use Carpenstar\DependencyInjection\Network\Interfaces\INetworkInterface;
 
 class NetworkFabric extends AFabric
 {

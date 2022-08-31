@@ -1,8 +1,8 @@
 <?php
-namespace DependencyInjection\Container;
+namespace Carpenstar\DependencyInjection\Container;
 
-use DependencyInjection\Fabrics\ServiceItem\ServiceItemAdditional;
-use DependencyInjection\Container\Interfaces\IServiceItemInterface;
+use Carpenstar\DependencyInjection\Fabrics\ServiceItem\ServiceItemAdditional;
+use Carpenstar\DependencyInjection\Container\Interfaces\IServiceItemInterface;
 
 class ServiceItem implements IServiceItemInterface
 {

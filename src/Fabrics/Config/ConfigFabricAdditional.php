@@ -1,7 +1,7 @@
 <?php
-namespace DependencyInjection\Fabrics\Config;
+namespace Carpenstar\DependencyInjection\Fabrics\Config;
 
-use DependencyInjection\Fabrics\ABaseConfigAdditional;
+use Carpenstar\DependencyInjection\Fabrics\ABaseConfigAdditional;
 
 class ConfigFabricAdditional extends ABaseConfigAdditional
 {

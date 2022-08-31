@@ -1,15 +1,15 @@
 <?php
-namespace DependencyInjection\Config;
+namespace Carpenstar\DependencyInjection\Config;
 
-use DependencyInjection\Fabrics\ConfigBuilder\ConfigBuilderFabric;
-use DependencyInjection\Config\Args\ParamArgs;
-use DependencyInjection\Config\Args\ServiceArgs;
-use DependencyInjection\Fabrics\Config\ConfigFabricAdditional;
-use DependencyInjection\Fabrics\IFabricAdditionalInterface;
-use DependencyInjection\Fabrics\FileLoader\FileLoaderFabric;
-use DependencyInjection\Config\Interfaces\Builder\IConfigBuilderInterface;
-use DependencyInjection\Config\Interfaces\IConfigInterface;
-use DependencyInjection\File\Interfaces\IFileLoaderInterface;
+use Carpenstar\DependencyInjection\Fabrics\ConfigBuilder\ConfigBuilderFabric;
+use Carpenstar\DependencyInjection\Config\Args\ParamArgs;
+use Carpenstar\DependencyInjection\Config\Args\ServiceArgs;
+use Carpenstar\DependencyInjection\Fabrics\Config\ConfigFabricAdditional;
+use Carpenstar\DependencyInjection\Fabrics\IFabricAdditionalInterface;
+use Carpenstar\DependencyInjection\Fabrics\FileLoader\FileLoaderFabric;
+use Carpenstar\DependencyInjection\Config\Interfaces\Builder\IConfigBuilderInterface;
+use Carpenstar\DependencyInjection\Config\Interfaces\IConfigInterface;
+use Carpenstar\DependencyInjection\File\Interfaces\IFileLoaderInterface;
 
 class Config implements IConfigInterface
 {

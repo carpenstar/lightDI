@@ -1,7 +1,7 @@
 <?php
-namespace DependencyInjection\Config\Args;
+namespace Carpenstar\DependencyInjection\Config\Args;
 
-use DependencyInjection\Config\Args\Abstracts\ABaseArgs;
+use Carpenstar\DependencyInjection\Config\Args\Abstracts\ABaseArgs;
 
 class ServiceArgs extends ABaseArgs
 {

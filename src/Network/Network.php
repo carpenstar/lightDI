@@ -1,10 +1,10 @@
 <?php
-namespace DependencyInjection\Network;
+namespace Carpenstar\DependencyInjection\Network;
 
-use DependencyInjection\Config\Args\ServiceArgs;
-use DependencyInjection\Fabrics\IFabricAdditionalInterface;
-use DependencyInjection\Fabrics\Network\NetworkConfigAdditional;
-use DependencyInjection\Network\Abstracts\ANetwork;
+use Carpenstar\DependencyInjection\Config\Args\ServiceArgs;
+use Carpenstar\DependencyInjection\Fabrics\IFabricAdditionalInterface;
+use Carpenstar\DependencyInjection\Fabrics\Network\NetworkConfigAdditional;
+use Carpenstar\DependencyInjection\Network\Abstracts\ANetwork;
 
 class Network extends ANetwork
 {

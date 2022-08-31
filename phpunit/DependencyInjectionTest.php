@@ -1,12 +1,12 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use DependencyInjection\Config\Builder\ConfigBuilder;
-use DependencyInjection\Fabrics\ConfigBuilder\ConfigBuilderFabric;
-use DependencyInjection\Fabrics\FileLoader\FileLoaderFabric;
-use DependencyInjection\File\XmlFileLoader;
-use DependencyInjection\File\YmlFileLoader;
-use DependencyInjection\DependencyInjection;
-use DependencyInjection\System\SystemConfig;
+use Carpenstar\DependencyInjection\Config\Builder\ConfigBuilder;
+use Carpenstar\DependencyInjection\Fabrics\ConfigBuilder\ConfigBuilderFabric;
+use Carpenstar\DependencyInjection\Fabrics\FileLoader\FileLoaderFabric;
+use Carpenstar\DependencyInjection\File\XmlFileLoader;
+use Carpenstar\DependencyInjection\File\YmlFileLoader;
+use Carpenstar\DependencyInjection\DependencyInjection;
+use Carpenstar\DependencyInjection\System\SystemConfig;
 
 class DependencyInjectionTest extends TestCase
 {

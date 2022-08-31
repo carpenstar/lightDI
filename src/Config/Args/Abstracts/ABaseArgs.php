@@ -1,7 +1,7 @@
 <?php
-namespace DependencyInjection\Config\Args\Abstracts;
+namespace Carpenstar\DependencyInjection\Config\Args\Abstracts;
 
-use DependencyInjection\Config\Interfaces\Builder\Args\IArgsInterface;
+use Carpenstar\DependencyInjection\Config\Interfaces\Builder\Args\IArgsInterface;
 
 abstract class ABaseArgs implements IArgsInterface
 {

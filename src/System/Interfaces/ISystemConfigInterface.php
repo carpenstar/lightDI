@@ -1,5 +1,5 @@
 <?php
-namespace DependencyInjection\System\Interfaces;
+namespace Carpenstar\DependencyInjection\System\Interfaces;
 
 interface ISystemConfigInterface
 {
