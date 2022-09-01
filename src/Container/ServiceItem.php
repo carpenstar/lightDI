@@ -1,7 +1,7 @@
 <?php
 namespace Carpenstar\DependencyInjection\Container;
 
-use Carpenstar\DependencyInjection\Fabrics\ServiceItem\ServiceItemAdditional;
+use Carpenstar\DependencyInjection\Fabrics\ServiceItem\ServiceItemParametersBag;
 use Carpenstar\DependencyInjection\Container\Interfaces\IServiceItemInterface;
 
 class ServiceItem implements IServiceItemInterface
@@ -18,16 +18,20 @@ class ServiceItem implements IServiceItemInterface
     /** @var object $instance */
     private object $instance;
 
+    /** @var object|null */
+    private ?object $networkData;
+
     /**
-    * @param ServiceItemAdditional $additional
+    * @param ServiceItemParametersBag $additional
     * @throws \ReflectionException
     */
-    public function __construct(ServiceItemAdditional $additional)
+    public function __construct(ServiceItemParametersBag $additional)
     {
         $args = $additional->getServiceArgs();
         $this->containerId = $args->getId();
         $this->className = $args->getClassName();
         $this->parameters = $args->getArgs();
+        $this->networkData = $additional->getNetworkData();
         $this->build();
     }
 
@@ -67,5 +71,6 @@ class ServiceItem implements IServiceItemInterface
     private function createInstance(): void
     {
         $this->instance = (new \ReflectionClass($this->className))->newInstanceArgs($this->parameters);
+        $this->instance->networkData = $this->networkData;
     }
 }

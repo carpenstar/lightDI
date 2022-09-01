@@ -2,10 +2,10 @@
 namespace Carpenstar\DependencyInjection\Fabrics\Network;
 
 use Carpenstar\DependencyInjection\Config\Interfaces\IConfigInterface;
-use Carpenstar\DependencyInjection\Fabrics\ABaseConfigAdditional;
+use Carpenstar\DependencyInjection\Fabrics\ABaseConfigParametersBag;
 use Carpenstar\DependencyInjection\ServiceManager\Interfaces\IServiceManagerInterface;
 
-class NetworkConfigAdditional extends ABaseConfigAdditional
+class NetworkConfigParametersBag extends ABaseConfigParametersBag
 {
     /** @var IConfigInterface $config */
     private IConfigInterface $config;

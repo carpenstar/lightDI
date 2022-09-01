@@ -5,6 +5,8 @@ use Carpenstar\DependencyInjection\Config\Interfaces\Builder\Args\IArgsInterface
 
 abstract class ABaseArgs implements IArgsInterface
 {
+    const DEFAULT_NETWORK = "_default";
+
     /** @var string $containerId */
     protected string $id;
 
@@ -59,10 +61,10 @@ abstract class ABaseArgs implements IArgsInterface
     }
 
     /**
-     * @param string $network
+     * @param string|null $network
      * @return $this
      */
-    protected function setNetwork(string $network): self
+    protected function setNetwork(?string $network): self
     {
         $this->network = $network;
         return $this;

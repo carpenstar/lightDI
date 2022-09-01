@@ -2,12 +2,18 @@
 namespace Carpenstar\DependencyInjection\Network\Abstracts;
 
 use Carpenstar\DependencyInjection\Config\Interfaces\IConfigInterface;
-use Carpenstar\DependencyInjection\Fabrics\IFabricAdditionalInterface;
+use Carpenstar\DependencyInjection\Fabrics\IFabricParametersBagInterface;
+use Carpenstar\DependencyInjection\Fabrics\Network\NetworkConfigParametersBag;
 use Carpenstar\DependencyInjection\Network\Interfaces\INetworkInterface;
+use Carpenstar\DependencyInjection\Network\NetworkDataBag;
 use Carpenstar\DependencyInjection\ServiceManager\Interfaces\IServiceManagerInterface;
 
 abstract class ANetwork implements INetworkInterface
 {
+
+    /** @var NetworkDataBag $networkData */
+    protected NetworkDataBag $networkData;
+
     /** @var array $buildServices */
     private array $buildServices = [];
 
@@ -17,43 +23,28 @@ abstract class ANetwork implements INetworkInterface
     /** @var IServiceManagerInterface $serviceManager */
     private IServiceManagerInterface $serviceManager;
 
-    /** @param IFabricAdditionalInterface $additional */
-    abstract public function __construct(IFabricAdditionalInterface $additional);
-
     /**
      * @param string $networkId
      * @return INetworkInterface
      */
     abstract public function build(string $networkId): INetworkInterface;
 
-    /**
-     * @param IConfigInterface $config
-     * @return $this
-     */
-    public function setConfig(IConfigInterface $config): self
+    /** @param NetworkConfigParametersBag $parametersBag */
+    public function __construct(IFabricParametersBagInterface $parametersBag)
     {
-        $this->config = $config;
-        return $this;
+        $this->config = $parametersBag->getConfig();
+        $this->serviceManager = $parametersBag->getServiceManager();
+        $this->networkData = NetworkDataBag::getInstance();
     }
 
     /** @return IConfigInterface */
-    public function getConfig(): IConfigInterface
+    protected function getConfig(): IConfigInterface
     {
         return $this->config;
     }
 
-    /**
-     * @param IServiceManagerInterface $serviceManager
-     * @return $this
-     */
-    public function setServiceManager(IServiceManagerInterface $serviceManager): self
-    {
-        $this->serviceManager = $serviceManager;
-        return $this;
-    }
-
     /** @return IServiceManagerInterface */
-    public function getServiceManager(): IServiceManagerInterface
+    protected function getServiceManager(): IServiceManagerInterface
     {
         return $this->serviceManager;
     }
@@ -82,6 +73,12 @@ abstract class ANetwork implements INetworkInterface
     {
         $this->buildServices[$serviceId] = $objectService;
         return $this;
+    }
+
+    /** @return array */
+    public function getServiceList(): array
+    {
+        return array_keys($this->buildServices);
     }
 
 }

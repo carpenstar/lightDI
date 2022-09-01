@@ -24,4 +24,5 @@ class DependencyInjection extends ABaseDependencyInjection
     {
         return $this->getServiceManager()->get($serviceId);
     }
+
 }

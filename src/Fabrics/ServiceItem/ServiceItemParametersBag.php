@@ -2,9 +2,10 @@
 namespace Carpenstar\DependencyInjection\Fabrics\ServiceItem;
 
 use Carpenstar\DependencyInjection\Config\Args\ServiceArgs;
-use Carpenstar\DependencyInjection\Fabrics\ABaseConfigAdditional;
+use Carpenstar\DependencyInjection\Fabrics\ABaseConfigParametersBag;
+use Carpenstar\DependencyInjection\Network\NetworkDataBag;
 
-class ServiceItemAdditional extends ABaseConfigAdditional
+class ServiceItemParametersBag extends ABaseConfigParametersBag
 {
     /** @var ServiceArgs $serviceArgs */
     private ServiceArgs $serviceArgs;
@@ -23,5 +24,17 @@ class ServiceItemAdditional extends ABaseConfigAdditional
     {
         $this->serviceArgs = $serviceArgs;
         return $this;
+    }
+
+    public function setNetworkData(NetworkDataBag $networkData): self
+    {
+        $this->networkData = $networkData;
+        return $this;
+    }
+
+    /** @return NetworkDataBag|null */
+    public function getNetworkData(): ?NetworkDataBag
+    {
+        return $this->networkData;
     }
 }

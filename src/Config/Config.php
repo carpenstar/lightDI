@@ -4,8 +4,8 @@ namespace Carpenstar\DependencyInjection\Config;
 use Carpenstar\DependencyInjection\Fabrics\ConfigBuilder\ConfigBuilderFabric;
 use Carpenstar\DependencyInjection\Config\Args\ParamArgs;
 use Carpenstar\DependencyInjection\Config\Args\ServiceArgs;
-use Carpenstar\DependencyInjection\Fabrics\Config\ConfigFabricAdditional;
-use Carpenstar\DependencyInjection\Fabrics\IFabricAdditionalInterface;
+use Carpenstar\DependencyInjection\Fabrics\Config\ConfigFabricParametersBag;
+use Carpenstar\DependencyInjection\Fabrics\IFabricParametersBagInterface;
 use Carpenstar\DependencyInjection\Fabrics\FileLoader\FileLoaderFabric;
 use Carpenstar\DependencyInjection\Config\Interfaces\Builder\IConfigBuilderInterface;
 use Carpenstar\DependencyInjection\Config\Interfaces\IConfigInterface;
@@ -22,8 +22,8 @@ class Config implements IConfigInterface
     /** @var IConfigBuilderInterface $configBuilder */
     private IConfigBuilderInterface $configBuilder;
 
-    /** @param ConfigFabricAdditional $args */
-    public function __construct(IFabricAdditionalInterface $args)
+    /** @param ConfigFabricParametersBag $args */
+    public function __construct(IFabricParametersBagInterface $args)
     {
         $filePath = $args->getServiceConfigFilePath();
         $fileLoaderClass = $args->getFileLoaderClassName();
