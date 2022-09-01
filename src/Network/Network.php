@@ -2,19 +2,10 @@
 namespace Carpenstar\DependencyInjection\Network;
 
 use Carpenstar\DependencyInjection\Config\Args\ServiceArgs;
-use Carpenstar\DependencyInjection\Fabrics\IFabricAdditionalInterface;
-use Carpenstar\DependencyInjection\Fabrics\Network\NetworkConfigAdditional;
 use Carpenstar\DependencyInjection\Network\Abstracts\ANetwork;
 
 class Network extends ANetwork
 {
-    /** @param NetworkConfigAdditional $additional */
-    public function __construct(IFabricAdditionalInterface $additional)
-    {
-        $this->setConfig($additional->getConfig());
-        $this->setServiceManager($additional->getServiceManager());
-    }
-
     /**
      * @param string $networkId
      * @return $this
@@ -24,9 +15,15 @@ class Network extends ANetwork
         /** @var ServiceArgs $service */
         foreach ($this->getConfig()->getNetworkServices($networkId) as $service) {
             $this->setBuildService($service->getId(),
-                $this->getServiceManager()->get($service->getId())
+                $this->getServiceManager()->setNetworkData($this->networkData)->get($service->getId())
             );
         }
         return $this;
+    }
+
+    /** @return NetworkDataBag|null */
+    public function getNetworkData(): ?NetworkDataBag
+    {
+        return $this->networkData;
     }
 }

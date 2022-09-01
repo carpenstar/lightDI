@@ -1,9 +1,9 @@
 <?php
 namespace Carpenstar\DependencyInjection\Fabrics\Config;
 
-use Carpenstar\DependencyInjection\Fabrics\ABaseConfigAdditional;
+use Carpenstar\DependencyInjection\Fabrics\ABaseConfigParametersBag;
 
-class ConfigFabricAdditional extends ABaseConfigAdditional
+class ConfigFabricParametersBag extends ABaseConfigParametersBag
 {
     /** @var string $serviceConfigFilePath */
     private string $serviceConfigFilePath;

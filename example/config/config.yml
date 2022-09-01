@@ -1,0 +1,60 @@
+parameters:
+  user.name: John
+  user.surname: Doe
+  user.phone: +0123456789
+  user.work: Google
+  something.cup: cup
+  something.notebook: notebook
+
+services:
+
+  ## Test for simple usage
+  component.simple.example:
+    class: \Carpenstar\Examples\ExampleUser
+    parameters:
+      - '%user.name'
+      - '%user.surname'
+
+
+
+  ## Test for depended on included objects
+  component.base.example.employee:
+    class: \Carpenstar\Examples\ExampleEmployee
+    parameters:
+      - '%user.name'
+      - '%user.surname'
+      - '@component.depend.example.phone'
+
+  component.depend.example.phone:
+    class: \Carpenstar\Examples\ExampleUserPhone
+    parameters:
+      - '%user.phone'
+      - '@component.depend.example.work'
+
+  component.depend.example.work:
+    class: \Carpenstar\Examples\ExampleUserWork
+    parameters:
+      - '%user.work'
+
+
+
+  ## Test for network as depended on include object
+  component.network.example.table:
+    network: main
+    class: \Carpenstar\Examples\ExampleTable
+    parameters:
+      - '%user.name'
+      - '@component.network.example.cup'
+      - '@component.network.example.notebook'
+
+  component.network.example.cup:
+    network: main
+    class: \Carpenstar\Examples\ExampleSomething
+    parameters:
+      - '%something.cup'
+
+  component.network.example.notebook:
+    network: main
+    class: \Carpenstar\Examples\ExampleSomething
+    parameters:
+      - '%something.notebook'

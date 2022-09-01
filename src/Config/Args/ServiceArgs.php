@@ -17,7 +17,7 @@ class ServiceArgs extends ABaseArgs
         $this->setId($id);
         $this->setClassName($blockData["class"]);
         $this->setArgs($blockData["parameters"]);
-        $this->setNetwork($blockData["network"]);
+        $this->setNetwork($blockData["network"] ?? ABaseArgs::DEFAULT_NETWORK);
     }
 
     /** @return string */

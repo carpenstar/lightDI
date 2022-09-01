@@ -4,9 +4,9 @@ namespace Carpenstar\DependencyInjection\System\Abstracts;
 use Carpenstar\DependencyInjection\Config\Builder\ConfigBuilder;
 use Carpenstar\DependencyInjection\Config\Config;
 use Carpenstar\DependencyInjection\Fabrics\Config\ConfigFabric;
-use Carpenstar\DependencyInjection\Fabrics\Config\ConfigFabricAdditional;
+use Carpenstar\DependencyInjection\Fabrics\Config\ConfigFabricParametersBag;
 use Carpenstar\DependencyInjection\Config\Interfaces\IConfigInterface;
-use Carpenstar\DependencyInjection\Fabrics\Network\NetworkConfigAdditional;
+use Carpenstar\DependencyInjection\Fabrics\Network\NetworkConfigParametersBag;
 use Carpenstar\DependencyInjection\Fabrics\Network\NetworkFabric;
 use Carpenstar\DependencyInjection\File\FileLoaderHelper;
 use Carpenstar\DependencyInjection\Network\Interfaces\INetworkInterface;
@@ -14,7 +14,7 @@ use Carpenstar\DependencyInjection\Network\Network;
 use Carpenstar\DependencyInjection\Fabrics\ServiceManager\ServiceManagerFabric;
 use Carpenstar\DependencyInjection\ServiceManager\Interfaces\IServiceManagerInterface;
 use Carpenstar\DependencyInjection\ServiceManager\ServiceManager;
-use Carpenstar\DependencyInjection\Fabrics\ServiceManager\ServiceManagerConfigAdditional;
+use Carpenstar\DependencyInjection\Fabrics\ServiceManager\ServiceManagerConfigParametersBag;
 use Carpenstar\DependencyInjection\System\Interfaces\IDependencyInjectionInterface;
 use Carpenstar\DependencyInjection\System\Interfaces\ISystemConfigInterface;
 
@@ -77,7 +77,7 @@ abstract class ABaseDependencyInjection implements IDependencyInjectionInterface
     /** @return $this */
     protected function buildServiceConfig(): self
     {
-        $additional = (new ConfigFabricAdditional())
+        $additional = (new ConfigFabricParametersBag())
             ->setServiceConfigFilePath($this->filePathServiceConfig)
             ->setFileLoaderClassName($this->fileLoaderClassName)
             ->setConfigBuilderClassName($this->configBuilderClassName);
@@ -92,7 +92,7 @@ abstract class ABaseDependencyInjection implements IDependencyInjectionInterface
      */
     protected function buildNetwork(string $networkId): INetworkInterface
     {
-        $additional = (new NetworkConfigAdditional())
+        $additional = (new NetworkConfigParametersBag())
             ->setServiceConfig($this->serviceConfig)
             ->setServiceManager($this->serviceManager);
 
@@ -103,7 +103,7 @@ abstract class ABaseDependencyInjection implements IDependencyInjectionInterface
     /** @return $this */
     protected function buildServiceManager(): self
     {
-        $additional = (new ServiceManagerConfigAdditional())
+        $additional = (new ServiceManagerConfigParametersBag())
             ->setConfig($this->serviceConfig);
 
         $this->serviceManager = ServiceManagerFabric::make(ServiceManager::class, $additional);
