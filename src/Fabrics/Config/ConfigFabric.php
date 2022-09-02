@@ -14,7 +14,12 @@ class ConfigFabric extends AFabric
      */
     public static function make(string $className, ?IFabricParametersBagInterface $additional = null): IConfigInterface
     {
-        /** @var ConfigFabricParametersBag $additional */
-        return new $className($additional);
+        /**
+         * @var ConfigFabricParametersBag $additional
+         * @var IConfigInterface $config
+         */
+        $config = new $className($additional);
+
+        return $config->build();
     }
 }

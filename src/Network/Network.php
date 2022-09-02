@@ -10,6 +10,9 @@ use Carpenstar\DependencyInjection\ServiceManager\Interfaces\IServiceManagerInte
 
 class Network implements INetworkInterface
 {
+    /** @var string $networkId */
+    private string $networkId;
+
     /** @var NetworkDataBag $networkData */
     protected NetworkDataBag $networkData;
 
@@ -25,19 +28,17 @@ class Network implements INetworkInterface
     /** @param NetworkConfigParametersBag $parametersBag */
     public function __construct(IFabricParametersBagInterface $parametersBag)
     {
+        $this->networkId = $parametersBag->getNetworkId();
         $this->config = $parametersBag->getConfig();
         $this->serviceManager = $parametersBag->getServiceManager();
         $this->networkData = NetworkDataBag::getInstance();
     }
 
-    /**
-     * @param string $networkId
-     * @return $this
-     */
-    public function build(string $networkId): self
+    /** @return $this */
+    public function build(): self
     {
         /** @var ServiceArgs $service */
-        foreach ($this->getConfig()->getNetworkServices($networkId) as $service) {
+        foreach ($this->getConfig()->getNetworkServices($this->networkId) as $service) {
             $this->setBuildService($service->getId(),
                 $this->getServiceManager()->setNetworkData($this->networkData)->get($service->getId())
             );

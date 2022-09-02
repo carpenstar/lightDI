@@ -8,9 +8,14 @@ class SystemConfig implements ISystemConfigInterface
     /** @var string $configPath */
     private string $configPath;
 
-    public function __construct(array $arrSettings)
+    /**
+     * @param array|null $arrSettings
+     */
+    public function __construct(?array $arrSettings = null)
     {
-        $this->setConfigFilePath($arrSettings["config_path"]);
+        if (!empty($arrSettings)) {
+            $this->setConfigFilePath($arrSettings["config_path"]);
+        }
     }
 
     /** @return string */
@@ -23,7 +28,7 @@ class SystemConfig implements ISystemConfigInterface
      * @param string $serviceConfigFilePath
      * @return $this
      */
-    private function setConfigFilePath(string $serviceConfigFilePath): self
+    public function setConfigFilePath(string $serviceConfigFilePath): self
     {
         $this->configPath = $serviceConfigFilePath;
         return $this;

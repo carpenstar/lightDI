@@ -88,7 +88,7 @@ class DependencyInjection implements IDependencyInjectionInterface
             ->setFileLoader($this->fileLoaderClassName)
             ->setConfigBuilder($this->configBuilderClassName);
 
-        $this->serviceConfig = ConfigFabric::make(Config::class, $additional)->build();
+        $this->serviceConfig = ConfigFabric::make(Config::class, $additional);
         return $this;
     }
 
@@ -99,10 +99,11 @@ class DependencyInjection implements IDependencyInjectionInterface
     protected function buildNetwork(string $networkId): INetworkInterface
     {
         $additional = (new NetworkConfigParametersBag())
+            ->setNetworkId($networkId)
             ->setServiceConfig($this->serviceConfig)
             ->setServiceManager($this->serviceManager);
 
-        $this->network = NetworkFabric::make(Network::class, $additional)->build($networkId);
+        $this->network = NetworkFabric::make(Network::class, $additional);
         return $this->network;
     }
 

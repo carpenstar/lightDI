@@ -7,6 +7,9 @@ use Carpenstar\DependencyInjection\ServiceManager\Interfaces\IServiceManagerInte
 
 class NetworkConfigParametersBag extends ABaseConfigParametersBag
 {
+    /** @var string $networkId */
+    private string $networkId;
+
     /** @var IConfigInterface $config */
     private IConfigInterface $config;
 
@@ -42,6 +45,22 @@ class NetworkConfigParametersBag extends ABaseConfigParametersBag
     public function setServiceManager(IServiceManagerInterface $serviceManager): self
     {
         $this->serviceManager = $serviceManager;
+        return $this;
+    }
+
+    /** @return string */
+    public function getNetworkId(): string
+    {
+        return $this->networkId;
+    }
+
+    /**
+     * @param string $networkId
+     * @return NetworkConfigParametersBag
+     */
+    public function setNetworkId(string $networkId): self
+    {
+        $this->networkId = $networkId;
         return $this;
     }
 }

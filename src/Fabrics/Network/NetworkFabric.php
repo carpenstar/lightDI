@@ -14,7 +14,11 @@ class NetworkFabric extends AFabric
      */
     public static function make(string $className, ?IFabricParametersBagInterface $additional = null): INetworkInterface
     {
-        /** @var NetworkConfigParametersBag $additional */
-        return new $className($additional);
+        /**
+         * @var NetworkConfigParametersBag $additional
+         * @var INetworkInterface $network
+         */
+        $network = new $className($additional);
+        return $network->build();
     }
 }
