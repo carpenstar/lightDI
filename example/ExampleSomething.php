@@ -1,7 +1,7 @@
 <?php
 namespace Carpenstar\Examples;
 
-use Carpenstar\DependencyInjection\System\Abstracts\BaseNetworkClass;
+use Carpenstar\DependencyInjection\System\BaseNetworkClass;
 
 class ExampleSomething extends BaseNetworkClass
 {

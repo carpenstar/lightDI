@@ -5,60 +5,60 @@ use Carpenstar\DependencyInjection\Fabrics\ABaseConfigParametersBag;
 
 class ConfigFabricParametersBag extends ABaseConfigParametersBag
 {
-    /** @var string $serviceConfigFilePath */
-    private string $serviceConfigFilePath;
+    /** @var string $configFilePath */
+    private string $configFilePath;
 
-    /** @var string $fileLoaderClassName */
-    private string $fileLoaderClassName;
+    /** @var string $fileLoader */
+    private string $fileLoader;
 
-    /** @var string $configBuilderClassName */
-    private string $configBuilderClassName;
-
-    /** @return string */
-    public function getConfigBuilderClassName(): string
-    {
-        return $this->configBuilderClassName;
-    }
+    /** @var string $configBuilder */
+    private string $configBuilder;
 
     /** @return string */
-    public function getFileLoaderClassName(): string
+    public function getConfigBuilder(): string
     {
-        return $this->fileLoaderClassName;
-    }
-
-    /** @return string */
-    public function getServiceConfigFilePath(): string
-    {
-        return $this->serviceConfigFilePath;
+        return $this->configBuilder;
     }
 
     /**
-     * @param string $configBuilderClassName
+     * @param string $configBuilder
      * @return $this
      */
-    public function setConfigBuilderClassName(string $configBuilderClassName): self
+    public function setConfigBuilder(string $configBuilder): self
     {
-        $this->configBuilderClassName = $configBuilderClassName;
+        $this->configBuilder = $configBuilder;
         return $this;
     }
 
-    /**
-     * @param string $fileLoaderClassName
-     * @return $this
-     */
-    public function setFileLoaderClassName(string $fileLoaderClassName): self
+    /** @return string */
+    public function getFileLoader(): string
     {
-        $this->fileLoaderClassName = $fileLoaderClassName;
-        return $this;
+        return $this->fileLoader;
     }
 
     /**
-     * @param string $serviceConfigFilePath
+     * @param string $fileLoader
      * @return $this
      */
-    public function setServiceConfigFilePath(string $serviceConfigFilePath): self
+    public function setFileLoader(string $fileLoader): self
     {
-        $this->serviceConfigFilePath = $serviceConfigFilePath;
+        $this->fileLoader = $fileLoader;
+        return $this;
+    }
+
+    /** @return string */
+    public function getConfigFilePath(): string
+    {
+        return $this->configFilePath;
+    }
+
+    /**
+     * @param string $configFilePath
+     * @return $this
+     */
+    public function setConfigFilePath(string $configFilePath): self
+    {
+        $this->configFilePath = $configFilePath;
         return $this;
     }
 }

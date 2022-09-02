@@ -1,12 +1,55 @@
 <?php
 namespace Carpenstar\DependencyInjection;
 
+use Carpenstar\DependencyInjection\Config\Builder\ConfigBuilder;
+use Carpenstar\DependencyInjection\Config\Config;
+use Carpenstar\DependencyInjection\Config\Interfaces\IConfigInterface;
+use Carpenstar\DependencyInjection\Fabrics\Config\ConfigFabric;
+use Carpenstar\DependencyInjection\Fabrics\Config\ConfigFabricParametersBag;
+use Carpenstar\DependencyInjection\Fabrics\Network\NetworkConfigParametersBag;
+use Carpenstar\DependencyInjection\Fabrics\Network\NetworkFabric;
+use Carpenstar\DependencyInjection\Fabrics\ServiceManager\ServiceManagerConfigParametersBag;
+use Carpenstar\DependencyInjection\Fabrics\ServiceManager\ServiceManagerFabric;
+use Carpenstar\DependencyInjection\File\FileLoaderHelper;
 use Carpenstar\DependencyInjection\Network\Interfaces\INetworkInterface;
-use Carpenstar\DependencyInjection\System\Abstracts\ABaseDependencyInjection;
+use Carpenstar\DependencyInjection\Network\Network;
+use Carpenstar\DependencyInjection\ServiceManager\Interfaces\IServiceManagerInterface;
+use Carpenstar\DependencyInjection\ServiceManager\ServiceManager;
+use Carpenstar\DependencyInjection\System\Interfaces\IDependencyInjectionInterface;
+use Carpenstar\DependencyInjection\System\Interfaces\ISystemConfigInterface;
 
 
-class DependencyInjection extends ABaseDependencyInjection
+class DependencyInjection implements IDependencyInjectionInterface
 {
+    /** @var string $filePathServiceConfig */
+    private string $filePathServiceConfig;
+
+    /** @var string $fileLoaderClassName */
+    private string $fileLoaderClassName;
+
+    /** @var string $configBuilderClassName */
+    private string $configBuilderClassName;
+
+    /** @var IConfigInterface $serviceConfig */
+    private IConfigInterface $serviceConfig;
+
+    /** @var IServiceManagerInterface */
+    protected IServiceManagerInterface $serviceManager;
+
+    /** @var INetworkInterface $network */
+    protected INetworkInterface $network;
+
+    /** @param ISystemConfigInterface $sysConfig */
+    public function __construct(ISystemConfigInterface $sysConfig)
+    {
+        $this->filePathServiceConfig = $sysConfig->getConfigFilePath();
+        $this->fileLoaderClassName = FileLoaderHelper::getFileLoaderClassName($sysConfig->getConfigFilePath());
+        $this->configBuilderClassName = ConfigBuilder::class;
+
+        $this->buildServiceConfig();
+        $this->buildServiceManager();
+    }
+
     /**
      * @param string $networkId
      * @return INetworkInterface
@@ -25,4 +68,51 @@ class DependencyInjection extends ABaseDependencyInjection
         return $this->getServiceManager()->get($serviceId);
     }
 
+    /** @return IConfigInterface */
+    public function getServiceConfig(): IConfigInterface
+    {
+        return $this->serviceConfig;
+    }
+
+    /** @return IServiceManagerInterface */
+    public function getServiceManager(): IServiceManagerInterface
+    {
+        return $this->serviceManager;
+    }
+
+    /** @return $this */
+    protected function buildServiceConfig(): self
+    {
+        $additional = (new ConfigFabricParametersBag())
+            ->setConfigFilePath($this->filePathServiceConfig)
+            ->setFileLoader($this->fileLoaderClassName)
+            ->setConfigBuilder($this->configBuilderClassName);
+
+        $this->serviceConfig = ConfigFabric::make(Config::class, $additional)->build();
+        return $this;
+    }
+
+    /**
+     * @param string $networkId
+     * @return INetworkInterface
+     */
+    protected function buildNetwork(string $networkId): INetworkInterface
+    {
+        $additional = (new NetworkConfigParametersBag())
+            ->setServiceConfig($this->serviceConfig)
+            ->setServiceManager($this->serviceManager);
+
+        $this->network = NetworkFabric::make(Network::class, $additional)->build($networkId);
+        return $this->network;
+    }
+
+    /** @return $this */
+    protected function buildServiceManager(): self
+    {
+        $additional = (new ServiceManagerConfigParametersBag())
+            ->setConfig($this->serviceConfig);
+
+        $this->serviceManager = ServiceManagerFabric::make(ServiceManager::class, $additional);
+        return $this;
+    }
 }

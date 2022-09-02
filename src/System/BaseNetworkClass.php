@@ -1,5 +1,5 @@
 <?php
-namespace Carpenstar\DependencyInjection\System\Abstracts;
+namespace Carpenstar\DependencyInjection\System;
 
 use Carpenstar\DependencyInjection\Network\NetworkDataBag;
 

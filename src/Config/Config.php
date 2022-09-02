@@ -25,9 +25,9 @@ class Config implements IConfigInterface
     /** @param ConfigFabricParametersBag $args */
     public function __construct(IFabricParametersBagInterface $args)
     {
-        $filePath = $args->getServiceConfigFilePath();
-        $fileLoaderClass = $args->getFileLoaderClassName();
-        $configBuilderClass = $args->getConfigBuilderClassName();
+        $filePath = $args->getConfigFilePath();
+        $fileLoaderClass = $args->getFileLoader();
+        $configBuilderClass = $args->getConfigBuilder();
 
         $this->loader = FileLoaderFabric::make($fileLoaderClass)->setFilePath($filePath);
         $this->configBuilder = ConfigBuilderFabric::make($configBuilderClass);

@@ -2,6 +2,8 @@
 namespace Carpenstar\DependencyInjection\ServiceManager;
 
 use Carpenstar\DependencyInjection\Config\Args\ServiceArgs;
+use Carpenstar\DependencyInjection\Config\Interfaces\IConfigInterface;
+use Carpenstar\DependencyInjection\Container\Interfaces\IServiceCollectionInterface;
 use Carpenstar\DependencyInjection\Container\ServiceCollection;
 use Carpenstar\DependencyInjection\Fabrics\ServiceCollection\ServiceCollectionFabric;
 use Carpenstar\DependencyInjection\Fabrics\ServiceItem\ServiceItemParametersBag;
@@ -10,14 +12,23 @@ use Carpenstar\DependencyInjection\Fabrics\ServiceManager\ServiceManagerConfigPa
 use Carpenstar\DependencyInjection\Container\ServiceItem;
 use Carpenstar\DependencyInjection\Fabrics\IFabricParametersBagInterface;
 use Carpenstar\DependencyInjection\Network\NetworkDataBag;
-use Carpenstar\DependencyInjection\ServiceManager\Abstracts\ABaseServiceManager;
+use Carpenstar\DependencyInjection\ServiceManager\Interfaces\IServiceManagerInterface;
 
-class ServiceManager extends ABaseServiceManager
+class ServiceManager implements IServiceManagerInterface
 {
+    /** @var IConfigInterface $config */
+    protected IConfigInterface $config;
+
+    /** @var IServiceCollectionInterface $collectionContainer */
+    protected IServiceCollectionInterface $collectionContainer;
+
+    /** @var NetworkDataBag $networkData */
+    protected NetworkDataBag $networkData;
+
     /** @param ServiceManagerConfigParametersBag $additional */
     public function __construct(IFabricParametersBagInterface $additional)
     {
-        parent::__construct($additional);
+        $this->config = $additional->getConfig();
         $this->collectionContainer = ServiceCollectionFabric::make(ServiceCollection::class);
     }
 
@@ -40,6 +51,22 @@ class ServiceManager extends ABaseServiceManager
         }
 
         return $container->extract();
+    }
+
+    /**
+     * @param NetworkDataBag|null $networkData
+     * @return $this
+     */
+    public function setNetworkData(?NetworkDataBag $networkData): self
+    {
+        $this->networkData = $networkData;
+        return $this;
+    }
+
+    /** @return NetworkDataBag|null */
+    public function getNetworkData(): ?NetworkDataBag
+    {
+        return $this->networkData;
     }
 
     /**
@@ -70,5 +97,4 @@ class ServiceManager extends ABaseServiceManager
 
         return $parameters;
     }
-
 }
