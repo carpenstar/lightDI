@@ -1,18 +1,18 @@
 <?php
 namespace Carpenstar\DependencyInjection\Network;
 
-class NetworkDataBag
+class NetworkData
 {
     /** @var array $parameters */
     private array $parameters = [];
 
-    /** @var NetworkDataBag */
-    private static NetworkDataBag $instance;
+    /** @var NetworkData */
+    private static NetworkData $instance;
 
     private function __construct() {}
 
-    /** @return NetworkDataBag */
-    public static function getInstance(): NetworkDataBag
+    /** @return NetworkData */
+    public static function getInstance(): NetworkData
     {
         if (empty(self::$instance)) {
             self::$instance = new self();

@@ -2,20 +2,20 @@
 namespace Carpenstar\DependencyInjection\Fabrics\Network;
 
 use Carpenstar\DependencyInjection\Fabrics\AFabric;
-use Carpenstar\DependencyInjection\Fabrics\IFabricParametersBagInterface;
+use Carpenstar\DependencyInjection\Fabrics\IFabricBuildParamInterface;
 use Carpenstar\DependencyInjection\Network\Interfaces\INetworkInterface;
 
 class NetworkFabric extends AFabric
 {
     /**
      * @param string $className
-     * @param IFabricParametersBagInterface|null $additional
+     * @param IFabricBuildParamInterface|null $additional
      * @return INetworkInterface
      */
-    public static function make(string $className, ?IFabricParametersBagInterface $additional = null): INetworkInterface
+    public static function make(string $className, ?IFabricBuildParamInterface $additional = null): INetworkInterface
     {
         /**
-         * @var NetworkConfigParametersBag $additional
+         * @var NetworkConfigBuildParam $additional
          * @var INetworkInterface $network
          */
         $network = new $className($additional);

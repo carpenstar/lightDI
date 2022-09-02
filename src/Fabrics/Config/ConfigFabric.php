@@ -3,19 +3,19 @@ namespace Carpenstar\DependencyInjection\Fabrics\Config;
 
 use Carpenstar\DependencyInjection\Config\Interfaces\IConfigInterface;
 use Carpenstar\DependencyInjection\Fabrics\AFabric;
-use Carpenstar\DependencyInjection\Fabrics\IFabricParametersBagInterface;
+use Carpenstar\DependencyInjection\Fabrics\IFabricBuildParamInterface;
 
 class ConfigFabric extends AFabric
 {
     /**
      * @param string $className
-     * @param IFabricParametersBagInterface|null $additional
+     * @param IFabricBuildParamInterface|null $additional
      * @return IConfigInterface
      */
-    public static function make(string $className, ?IFabricParametersBagInterface $additional = null): IConfigInterface
+    public static function make(string $className, ?IFabricBuildParamInterface $additional = null): IConfigInterface
     {
         /**
-         * @var ConfigFabricParametersBag $additional
+         * @var ConfigFabricBuildParam $additional
          * @var IConfigInterface $config
          */
         $config = new $className($additional);

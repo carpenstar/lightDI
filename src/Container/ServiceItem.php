@@ -1,7 +1,7 @@
 <?php
 namespace Carpenstar\DependencyInjection\Container;
 
-use Carpenstar\DependencyInjection\Fabrics\ServiceItem\ServiceItemParametersBag;
+use Carpenstar\DependencyInjection\Fabrics\ServiceItem\ServiceItemBuildParam;
 use Carpenstar\DependencyInjection\Container\Interfaces\IServiceItemInterface;
 
 class ServiceItem implements IServiceItemInterface
@@ -22,10 +22,10 @@ class ServiceItem implements IServiceItemInterface
     private ?object $networkData;
 
     /**
-    * @param ServiceItemParametersBag $additional
+    * @param ServiceItemBuildParam $additional
     * @throws \ReflectionException
     */
-    public function __construct(ServiceItemParametersBag $additional)
+    public function __construct(ServiceItemBuildParam $additional)
     {
         $args = $additional->getServiceArgs();
         $this->containerId = $args->getId();

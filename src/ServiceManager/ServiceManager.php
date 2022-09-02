@@ -6,12 +6,12 @@ use Carpenstar\DependencyInjection\Config\Interfaces\IConfigInterface;
 use Carpenstar\DependencyInjection\Container\Interfaces\IServiceCollectionInterface;
 use Carpenstar\DependencyInjection\Container\ServiceCollection;
 use Carpenstar\DependencyInjection\Fabrics\ServiceCollection\ServiceCollectionFabric;
-use Carpenstar\DependencyInjection\Fabrics\ServiceItem\ServiceItemParametersBag;
+use Carpenstar\DependencyInjection\Fabrics\ServiceItem\ServiceItemBuildParam;
 use Carpenstar\DependencyInjection\Fabrics\ServiceItem\ServiceItemFabric;
-use Carpenstar\DependencyInjection\Fabrics\ServiceManager\ServiceManagerConfigParametersBag;
+use Carpenstar\DependencyInjection\Fabrics\ServiceManager\ServiceManagerBuildParam;
 use Carpenstar\DependencyInjection\Container\ServiceItem;
-use Carpenstar\DependencyInjection\Fabrics\IFabricParametersBagInterface;
-use Carpenstar\DependencyInjection\Network\NetworkDataBag;
+use Carpenstar\DependencyInjection\Fabrics\IFabricBuildParamInterface;
+use Carpenstar\DependencyInjection\Network\NetworkData;
 use Carpenstar\DependencyInjection\ServiceManager\Interfaces\IServiceManagerInterface;
 
 class ServiceManager implements IServiceManagerInterface
@@ -22,11 +22,11 @@ class ServiceManager implements IServiceManagerInterface
     /** @var IServiceCollectionInterface $collectionContainer */
     protected IServiceCollectionInterface $collectionContainer;
 
-    /** @var NetworkDataBag $networkData */
-    protected NetworkDataBag $networkData;
+    /** @var NetworkData $networkData */
+    protected NetworkData $networkData;
 
-    /** @param ServiceManagerConfigParametersBag $additional */
-    public function __construct(IFabricParametersBagInterface $additional)
+    /** @param ServiceManagerBuildParam $additional */
+    public function __construct(IFabricBuildParamInterface $additional)
     {
         $this->config = $additional->getConfig();
         $this->collectionContainer = ServiceCollectionFabric::make(ServiceCollection::class);
@@ -41,7 +41,7 @@ class ServiceManager implements IServiceManagerInterface
     public function get(string $serviceId): object
     {
         if (empty($container = $this->collectionContainer->findService($serviceId))) {
-            $parameters = (new ServiceItemParametersBag())->setServiceArgs($this->handleServiceArguments($serviceId));
+            $parameters = (new ServiceItemBuildParam())->setServiceArgs($this->handleServiceArguments($serviceId));
 
             if (!empty($this->networkData)) {
                 $parameters->setNetworkData($this->networkData);
@@ -54,17 +54,17 @@ class ServiceManager implements IServiceManagerInterface
     }
 
     /**
-     * @param NetworkDataBag|null $networkData
+     * @param NetworkData|null $networkData
      * @return $this
      */
-    public function setNetworkData(?NetworkDataBag $networkData): self
+    public function setNetworkData(?NetworkData $networkData): self
     {
         $this->networkData = $networkData;
         return $this;
     }
 
-    /** @return NetworkDataBag|null */
-    public function getNetworkData(): ?NetworkDataBag
+    /** @return NetworkData|null */
+    public function getNetworkData(): ?NetworkData
     {
         return $this->networkData;
     }
@@ -76,11 +76,7 @@ class ServiceManager implements IServiceManagerInterface
      */
     private function handleServiceArguments(string $serviceId): ServiceArgs
     {
-        try {
-            $parameters = $this->config->getServiceArgs($serviceId);
-        } catch (\Exception $e) {
-            var_dump($e->getMessage()); die;
-        }
+        $parameters = $this->config->getServiceArgs($serviceId);
 
         foreach ($parameters->getArgs() as $index => $parameter) {
             switch (substr($parameter, 0,1)) {

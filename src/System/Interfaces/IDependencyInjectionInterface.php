@@ -23,7 +23,7 @@ interface IDependencyInjectionInterface
     public function getNetwork(string $networkId): INetworkInterface;
 
     /** @return IConfigInterface */
-    public function getServiceConfig(): IConfigInterface;
+    public function getConfig(): IConfigInterface;
 
     /** @return IServiceManagerInterface */
     public function getServiceManager(): IServiceManagerInterface;

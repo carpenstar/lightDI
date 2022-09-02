@@ -3,8 +3,8 @@ namespace Carpenstar\DependencyInjection\Network;
 
 use Carpenstar\DependencyInjection\Config\Args\ServiceArgs;
 use Carpenstar\DependencyInjection\Config\Interfaces\IConfigInterface;
-use Carpenstar\DependencyInjection\Fabrics\IFabricParametersBagInterface;
-use Carpenstar\DependencyInjection\Fabrics\Network\NetworkConfigParametersBag;
+use Carpenstar\DependencyInjection\Fabrics\IFabricBuildParamInterface;
+use Carpenstar\DependencyInjection\Fabrics\Network\NetworkConfigBuildParam;
 use Carpenstar\DependencyInjection\Network\Interfaces\INetworkInterface;
 use Carpenstar\DependencyInjection\ServiceManager\Interfaces\IServiceManagerInterface;
 
@@ -13,8 +13,8 @@ class Network implements INetworkInterface
     /** @var string $networkId */
     private string $networkId;
 
-    /** @var NetworkDataBag $networkData */
-    protected NetworkDataBag $networkData;
+    /** @var NetworkData $networkData */
+    protected NetworkData $networkData;
 
     /** @var array $buildServices */
     private array $buildServices = [];
@@ -25,13 +25,13 @@ class Network implements INetworkInterface
     /** @var IServiceManagerInterface $serviceManager */
     private IServiceManagerInterface $serviceManager;
 
-    /** @param NetworkConfigParametersBag $parametersBag */
-    public function __construct(IFabricParametersBagInterface $parametersBag)
+    /** @param NetworkConfigBuildParam $parametersBag */
+    public function __construct(IFabricBuildParamInterface $parametersBag)
     {
         $this->networkId = $parametersBag->getNetworkId();
         $this->config = $parametersBag->getConfig();
         $this->serviceManager = $parametersBag->getServiceManager();
-        $this->networkData = NetworkDataBag::getInstance();
+        $this->networkData = NetworkData::getInstance();
     }
 
     /** @return $this */
@@ -46,8 +46,8 @@ class Network implements INetworkInterface
         return $this;
     }
 
-    /** @return NetworkDataBag|null */
-    public function getNetworkData(): ?NetworkDataBag
+    /** @return NetworkData|null */
+    public function getNetworkData(): ?NetworkData
     {
         return $this->networkData;
     }

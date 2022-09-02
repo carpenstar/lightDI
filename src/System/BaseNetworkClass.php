@@ -1,12 +1,12 @@
 <?php
 namespace Carpenstar\DependencyInjection\System;
 
-use Carpenstar\DependencyInjection\Network\NetworkDataBag;
+use Carpenstar\DependencyInjection\Network\NetworkData;
 
 abstract class BaseNetworkClass
 {
-    /** @return NetworkDataBag */
-    protected function getNetworkData(): NetworkDataBag
+    /** @return NetworkData */
+    protected function getNetworkData(): NetworkData
     {
         return $this->networkData;
     }

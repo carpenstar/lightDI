@@ -2,14 +2,14 @@
 namespace Carpenstar\DependencyInjection\Fabrics\ServiceManager;
 
 use Carpenstar\DependencyInjection\Fabrics\AFabric;
-use Carpenstar\DependencyInjection\Fabrics\IFabricParametersBagInterface;
+use Carpenstar\DependencyInjection\Fabrics\IFabricBuildParamInterface;
 use Carpenstar\DependencyInjection\ServiceManager\Interfaces\IServiceManagerInterface;
 
 class ServiceManagerFabric extends AFabric
 {
-    public static function make(string $className, ?IFabricParametersBagInterface $additional = null): IServiceManagerInterface
+    public static function make(string $className, ?IFabricBuildParamInterface $additional = null): IServiceManagerInterface
     {
-        /** @var ServiceManagerConfigParametersBag $additional */
+        /** @var ServiceManagerBuildParam $additional */
         return new $className($additional);
     }
 }

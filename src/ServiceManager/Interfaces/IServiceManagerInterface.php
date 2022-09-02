@@ -1,13 +1,13 @@
 <?php
 namespace Carpenstar\DependencyInjection\ServiceManager\Interfaces;
 
-use Carpenstar\DependencyInjection\Fabrics\IFabricParametersBagInterface;
-use Carpenstar\DependencyInjection\Network\NetworkDataBag;
+use Carpenstar\DependencyInjection\Fabrics\IFabricBuildParamInterface;
+use Carpenstar\DependencyInjection\Network\NetworkData;
 
 interface IServiceManagerInterface
 {
-    /** @param IFabricParametersBagInterface $additional */
-    public function __construct(IFabricParametersBagInterface $additional);
+    /** @param IFabricBuildParamInterface $additional */
+    public function __construct(IFabricBuildParamInterface $additional);
 
     /**
      * @param string $serviceId
@@ -16,11 +16,11 @@ interface IServiceManagerInterface
     public function get(string $serviceId): object;
 
     /**
-     * @param NetworkDataBag|null $networkData
+     * @param NetworkData|null $networkData
      * @return $this
      */
-    public function setNetworkData(?NetworkDataBag $networkData): self;
+    public function setNetworkData(?NetworkData $networkData): self;
 
-    /** @return NetworkDataBag|null */
-    public function getNetworkData(): ?NetworkDataBag;
+    /** @return NetworkData|null */
+    public function getNetworkData(): ?NetworkData;
 }

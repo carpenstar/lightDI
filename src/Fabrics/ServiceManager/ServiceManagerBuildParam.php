@@ -2,9 +2,9 @@
 namespace Carpenstar\DependencyInjection\Fabrics\ServiceManager;
 
 use Carpenstar\DependencyInjection\Config\Interfaces\IConfigInterface;
-use Carpenstar\DependencyInjection\Fabrics\ABaseConfigParametersBag;
+use Carpenstar\DependencyInjection\Fabrics\ABaseConfigBuildParam;
 
-class ServiceManagerConfigParametersBag extends ABaseConfigParametersBag
+class ServiceManagerBuildParam extends ABaseConfigBuildParam
 {
     /** @var IConfigInterface $config */
     private IConfigInterface $config;

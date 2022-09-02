@@ -2,10 +2,10 @@
 namespace Carpenstar\DependencyInjection\Fabrics\Network;
 
 use Carpenstar\DependencyInjection\Config\Interfaces\IConfigInterface;
-use Carpenstar\DependencyInjection\Fabrics\ABaseConfigParametersBag;
+use Carpenstar\DependencyInjection\Fabrics\ABaseConfigBuildParam;
 use Carpenstar\DependencyInjection\ServiceManager\Interfaces\IServiceManagerInterface;
 
-class NetworkConfigParametersBag extends ABaseConfigParametersBag
+class NetworkConfigBuildParam extends ABaseConfigBuildParam
 {
     /** @var string $networkId */
     private string $networkId;
@@ -56,7 +56,7 @@ class NetworkConfigParametersBag extends ABaseConfigParametersBag
 
     /**
      * @param string $networkId
-     * @return NetworkConfigParametersBag
+     * @return NetworkConfigBuildParam
      */
     public function setNetworkId(string $networkId): self
     {
