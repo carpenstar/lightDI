@@ -8,6 +8,9 @@ class SystemConfig implements ISystemConfigInterface
     /** @var string $configPath */
     private string $configPath;
 
+    /** @var bool $isUseNetworkData */
+    private bool $isUseNetworkData;
+
     /**
      * @param array|null $arrSettings
      */
@@ -31,6 +34,22 @@ class SystemConfig implements ISystemConfigInterface
     public function setConfigFilePath(string $serviceConfigFilePath): self
     {
         $this->configPath = $serviceConfigFilePath;
+        return $this;
+    }
+
+    /** @return boolean */
+    public function getIsUseNetworkData(): bool
+    {
+        return $this->isUseNetworkData;
+    }
+
+    /**
+     * @param bool $isUseNetworkData
+     * @return $this
+     */
+    public function setIsUseNetworkData(bool $isUseNetworkData): self
+    {
+        $this->isUseNetworkData = $isUseNetworkData;
         return $this;
     }
 }

@@ -14,7 +14,7 @@ use Carpenstar\Examples\ExampleUser;
 class DependencyInjectionTest extends TestCase
 {
     const CONFIG_DATA_YML = [
-        "config_path" => "/app/example/config/config.yml"
+        "config_path" => "/app/example/config/config.xml"
     ];
 
     public function testSysConfig()
@@ -68,6 +68,7 @@ class DependencyInjectionTest extends TestCase
      * Тестирование сервиса component.network.example.table
      * @depends testSysConfig
      */
+
     public function testComponentNetworkDependType(SystemConfig $sysConfig)
     {
         $depInjection = new DependencyInjection($sysConfig);

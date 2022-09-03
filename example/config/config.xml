@@ -1,27 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <config>
-    <networks>
-        <network>main</network>
-        <network>isolated</network>
-    </networks>
     <parameters>
-        <parameter id="db.login" value="root"/>
-        <parameter id="db.password" value="password"/>
+        <parameter id="user.name" value="John"/>
+        <parameter id="user.surname" value="Doe"/>
+        <parameter id="user.phone" value="+0123456789"/>
+        <parameter id="user.work" value="Google"/>
+        <parameter id="something.cup" value="cup"/>
+        <parameter id="something.notebook" value="notebook"/>
     </parameters>
     <services>
-        <service id="component.db_default" class="\Examples\Request">
-            <arguments>
-                <parameter>%db.login</parameter>
-                <parameter>%db.password</parameter>
-                <parameter>@component.db_alt</parameter>
-            </arguments>
+        <service id="component.simple.example" class="\Carpenstar\Examples\ExampleUser">
+            <parameters>
+                <parameter>%user.name</parameter>
+                <parameter>%user.surname</parameter>
+            </parameters>
         </service>
-        <service id="component.db_alt" class="\Examples\Request2">
-            <arguments>
-                <parameter>%db.login</parameter>
-                <parameter>%db.password</parameter>
-            </arguments>
+        <service id="component.base.example.employee" class="\Carpenstar\Examples\ExampleEmployee">
+            <parameters>
+                <parameter>%user.name</parameter>
+                <parameter>%user.surname</parameter>
+                <parameter>@component.depend.example.phone</parameter>
+            </parameters>
+        </service>
+        <service id="component.depend.example.phone" class="\Carpenstar\Examples\ExampleUserPhone">
+            <parameters>
+                <parameter>%user.phone</parameter>
+                <parameter>@component.depend.example.work</parameter>
+            </parameters>
+        </service>
+        <service id="component.depend.example.work" class="\Carpenstar\Examples\ExampleUserWork">
+            <parameters>
+                <parameter>%user.work</parameter>
+            </parameters>
+        </service>
+        <service id="component.network.example.table" class="\Carpenstar\Examples\ExampleTable" network="main">
+            <parameters>
+                <parameter>%user.name</parameter>
+                <parameter>@component.network.example.cup</parameter>
+                <parameter>@component.network.example.notebook</parameter>
+            </parameters>
+        </service>
+        <service id="component.network.example.cup" class="\Carpenstar\Examples\ExampleSomething" network="main">
+            <parameters>
+                <parameter>%something.cup</parameter>
+            </parameters>
+        </service>
+        <service id="component.network.example.notebook" class="\Carpenstar\Examples\ExampleSomething" network="main">
+            <parameters>
+                <parameter>%something.notebook</parameter>
+            </parameters>
         </service>
     </services>
 </config>
-

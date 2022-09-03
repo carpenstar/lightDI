@@ -18,7 +18,9 @@ use Carpenstar\DependencyInjection\ServiceManager\ServiceManager;
 use Carpenstar\DependencyInjection\System\Interfaces\IDependencyInjectionInterface;
 use Carpenstar\DependencyInjection\System\Interfaces\ISystemConfigInterface;
 
-
+/**
+ * class DependencyInjection
+ */
 class DependencyInjection implements IDependencyInjectionInterface
 {
     /** @var string $configPath */
@@ -87,8 +89,8 @@ class DependencyInjection implements IDependencyInjectionInterface
             ->setConfigFilePath($this->configPath)
             ->setFileLoader($this->fileLoader)
             ->setConfigBuilder($this->configBuilder);
-
         $this->config = ConfigFabric::make(Config::class, $buildParams);
+
         return $this;
     }
 
@@ -102,8 +104,8 @@ class DependencyInjection implements IDependencyInjectionInterface
             ->setNetworkId($networkId)
             ->setServiceConfig($this->config)
             ->setServiceManager($this->serviceManager);
-
         $this->network = NetworkFabric::make(Network::class, $buildParams);
+
         return $this->network;
     }
 
@@ -111,8 +113,8 @@ class DependencyInjection implements IDependencyInjectionInterface
     protected function buildServiceManager(): self
     {
         $buildParam = (new ServiceManagerBuildParam())->setConfig($this->config);
-
         $this->serviceManager = ServiceManagerFabric::make(ServiceManager::class, $buildParam);
+
         return $this;
     }
 }
