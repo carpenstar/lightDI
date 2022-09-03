@@ -2,10 +2,10 @@
 namespace Carpenstar\DependencyInjection\Fabrics\Network;
 
 use Carpenstar\DependencyInjection\Config\Interfaces\IConfigInterface;
-use Carpenstar\DependencyInjection\Fabrics\ABaseConfigBuildParam;
+use Carpenstar\DependencyInjection\Fabrics\IFabricBuildParamInterface;
 use Carpenstar\DependencyInjection\ServiceManager\Interfaces\IServiceManagerInterface;
 
-class NetworkConfigBuildParam extends ABaseConfigBuildParam
+class NetworkConfigBuildParam implements IFabricBuildParamInterface
 {
     /** @var string $networkId */
     private string $networkId;

@@ -9,15 +9,18 @@ class SystemConfig implements ISystemConfigInterface
     private string $configPath;
 
     /** @var bool $isUseNetworkData */
-    private bool $isUseNetworkData;
+    private bool $isUseNetworkData = true;
 
     /**
      * @param array|null $arrSettings
      */
     public function __construct(?array $arrSettings = null)
     {
-        if (!empty($arrSettings)) {
+        if (!empty($arrSettings["config_path"])) {
             $this->setConfigFilePath($arrSettings["config_path"]);
+        }
+        if (!empty($arrSettings["is_use_network_data"])) {
+            $this->setIsUseNetworkData($arrSettings["is_use_network_data"]);
         }
     }
 

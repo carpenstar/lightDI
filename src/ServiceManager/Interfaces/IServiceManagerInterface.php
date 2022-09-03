@@ -14,13 +14,4 @@ interface IServiceManagerInterface
      * @return object
      */
     public function get(string $serviceId): object;
-
-    /**
-     * @param NetworkData|null $networkData
-     * @return $this
-     */
-    public function setNetworkData(?NetworkData $networkData): self;
-
-    /** @return NetworkData|null */
-    public function getNetworkData(): ?NetworkData;
 }

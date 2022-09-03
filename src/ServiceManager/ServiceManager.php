@@ -42,31 +42,11 @@ class ServiceManager implements IServiceManagerInterface
     {
         if (empty($container = $this->collectionContainer->findService($serviceId))) {
             $parameters = (new ServiceItemBuildParam())->setServiceArgs($this->handleServiceArguments($serviceId));
-
-            if (!empty($this->networkData)) {
-                $parameters->setNetworkData($this->networkData);
-            }
             $container = ServiceItemFabric::make(ServiceItem::class, $parameters);
             $this->collectionContainer->push($container);
         }
 
         return $container->extract();
-    }
-
-    /**
-     * @param NetworkData|null $networkData
-     * @return $this
-     */
-    public function setNetworkData(?NetworkData $networkData): self
-    {
-        $this->networkData = $networkData;
-        return $this;
-    }
-
-    /** @return NetworkData|null */
-    public function getNetworkData(): ?NetworkData
-    {
-        return $this->networkData;
     }
 
     /**

@@ -3,19 +3,18 @@ namespace Carpenstar\DependencyInjection\Network\Interfaces;
 
 use Carpenstar\DependencyInjection\Fabrics\IFabricBuildParamInterface;
 use Carpenstar\DependencyInjection\Fabrics\Network\NetworkConfigBuildParam;
-use Carpenstar\DependencyInjection\Network\Network;
 use Carpenstar\DependencyInjection\Network\NetworkData;
 
 interface INetworkInterface
 {
-    /** @param NetworkConfigBuildParam $parametersBag */
-    public function __construct(IFabricBuildParamInterface $parametersBag);
+    /** @param NetworkConfigBuildParam $buildParam */
+    public function __construct(IFabricBuildParamInterface $buildParam);
 
     /** @return INetworkInterface */
     public function build(): INetworkInterface;
 
     /** @return NetworkData|null */
-    public function getNetworkData(): ?NetworkData;
+    public static function getNetworkData(): ?NetworkData;
 
     /** @return array */
     public function getServiceList(): array;

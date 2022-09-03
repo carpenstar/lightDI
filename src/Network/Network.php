@@ -13,9 +13,6 @@ class Network implements INetworkInterface
     /** @var string $networkId */
     private string $networkId;
 
-    /** @var NetworkData $networkData */
-    protected NetworkData $networkData;
-
     /** @var array $buildServices */
     private array $buildServices = [];
 
@@ -25,13 +22,20 @@ class Network implements INetworkInterface
     /** @var IServiceManagerInterface $serviceManager */
     private IServiceManagerInterface $serviceManager;
 
-    /** @param NetworkConfigBuildParam $parametersBag */
-    public function __construct(IFabricBuildParamInterface $parametersBag)
+    /** @param NetworkConfigBuildParam $buildParam */
+    public function __construct(IFabricBuildParamInterface $buildParam)
     {
-        $this->networkId = $parametersBag->getNetworkId();
-        $this->config = $parametersBag->getConfig();
-        $this->serviceManager = $parametersBag->getServiceManager();
-        $this->networkData = NetworkData::getInstance();
+        $this->networkId = $buildParam->getNetworkId();
+        Network::getNetworkData()->registerNetwork($buildParam->getNetworkId());
+        
+        $this->config = $buildParam->getConfig();
+        $this->serviceManager = $buildParam->getServiceManager();
+    }
+
+    /** @return NetworkData|null */
+    public static function getNetworkData(): ?NetworkData
+    {
+        return NetworkData::getInstance();
     }
 
     /** @return $this */
@@ -40,16 +44,10 @@ class Network implements INetworkInterface
         /** @var ServiceArgs $service */
         foreach ($this->getConfig()->getNetworkServices($this->networkId) as $service) {
             $this->setBuildService($service->getId(),
-                $this->getServiceManager()->setNetworkData($this->networkData)->get($service->getId())
+                $this->getServiceManager()->get($service->getId())
             );
         }
         return $this;
-    }
-
-    /** @return NetworkData|null */
-    public function getNetworkData(): ?NetworkData
-    {
-        return $this->networkData;
     }
 
     /** @return array */

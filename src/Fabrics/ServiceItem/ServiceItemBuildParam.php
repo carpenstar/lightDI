@@ -2,10 +2,10 @@
 namespace Carpenstar\DependencyInjection\Fabrics\ServiceItem;
 
 use Carpenstar\DependencyInjection\Config\Args\ServiceArgs;
-use Carpenstar\DependencyInjection\Fabrics\ABaseConfigBuildParam;
+use Carpenstar\DependencyInjection\Fabrics\IFabricBuildParamInterface;
 use Carpenstar\DependencyInjection\Network\NetworkData;
 
-class ServiceItemBuildParam extends ABaseConfigBuildParam
+class ServiceItemBuildParam implements IFabricBuildParamInterface
 {
     /** @var ServiceArgs $serviceArgs */
     private ServiceArgs $serviceArgs;

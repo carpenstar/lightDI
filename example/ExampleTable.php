@@ -1,9 +1,9 @@
 <?php
 namespace Carpenstar\Examples;
 
-use Carpenstar\DependencyInjection\System\BaseNetworkClass;
+use Carpenstar\DependencyInjection\Network\Network;
 
-class ExampleTable extends BaseNetworkClass
+class ExampleTable
 {
     /** @var string $name */
     private string $name;
@@ -39,10 +39,10 @@ class ExampleTable extends BaseNetworkClass
         }
 
         $cupName = $this->cup->getItemName();
-        $countCup = $this->getNetworkData()->getParameter($this->cup->getItemName());
-
         $notebookName = $this->notebook->getItemName();
-        $countNotebook = $this->getNetworkData()->getParameter($this->notebook->getItemName());
+
+        $countCup = Network::getNetworkData()->getParameter("main", $this->cup->getItemName());
+        $countNotebook = Network::getNetworkData()->getParameter("main", $this->notebook->getItemName());
 
         echo "{$this->name} has {$countCup} {$cupName} and {$countNotebook} {$notebookName}" . PHP_EOL;
     }

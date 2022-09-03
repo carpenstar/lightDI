@@ -22,28 +22,52 @@ class NetworkData
     }
 
     /**
+     * @param string $networkId
      * @param string $paramName
      * @return mixed
      */
-    public function getParameter(string $paramName)
+    public function getParameter(string $networkId, string $paramName)
     {
-        return $this->parameters[$paramName];
-    }
-
-    /** @return array */
-    public function getListParameters(): array
-    {
-        return array_keys($this->parameters);
+        return $this->parameters[$networkId][$paramName];
     }
 
     /**
+     * @param string $networkId
+     * @return array
+     */
+    public function getListNetworkParameters(string $networkId): array
+    {
+        return array_keys($this->parameters[$networkId]);
+    }
+
+    /**
+     * @param string $networkId
+     * @return array
+     */
+    public function getListNetworkDataParameters(string $networkId): array
+    {
+        return $this->parameters[$networkId];
+    }
+
+    /**
+     * @param string $networkId
      * @param string $paramName
      * @param $value
      * @return $this
      */
-    public function setParameter(string $paramName, $value): self
+    public function setParameter(string $networkId, string $paramName, $value): self
     {
-        $this->parameters[$paramName] = $value;
+        $this->parameters[$networkId][$paramName] = $value;
+        return $this;
+    }
+
+    /**
+     * @param string $networkId
+     * @return $this
+     */
+    public function registerNetwork(string $networkId): self
+    {
+        $this->parameters[$networkId] = [];
         return $this;
     }
 }

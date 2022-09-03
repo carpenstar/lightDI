@@ -1,9 +1,9 @@
 <?php
 namespace Carpenstar\DependencyInjection\Fabrics\Config;
 
-use Carpenstar\DependencyInjection\Fabrics\ABaseConfigBuildParam;
+use Carpenstar\DependencyInjection\Fabrics\IFabricBuildParamInterface;
 
-class ConfigFabricBuildParam extends ABaseConfigBuildParam
+class ConfigFabricBuildParam implements IFabricBuildParamInterface
 {
     /** @var string $configFilePath */
     private string $configFilePath;

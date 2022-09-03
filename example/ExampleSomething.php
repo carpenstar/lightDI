@@ -1,9 +1,9 @@
 <?php
 namespace Carpenstar\Examples;
 
-use Carpenstar\DependencyInjection\System\BaseNetworkClass;
+use Carpenstar\DependencyInjection\Network\Network;
 
-class ExampleSomething extends BaseNetworkClass
+class ExampleSomething
 {
     /** @var string $itemName */
     private string $itemName;
@@ -26,8 +26,7 @@ class ExampleSomething extends BaseNetworkClass
     /** @return $this */
     public function addItem(): self
     {
-        $this->itemCount++;
-        $this->getNetworkData()->setParameter($this->itemName, $this->itemCount);
+        Network::getNetworkData()->setParameter("main", $this->itemName, $this->itemCount++);
         return $this;
     }
 

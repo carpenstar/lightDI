@@ -1,14 +1,12 @@
 <?php
 namespace Carpenstar\DependencyInjection\File;
 
+use Carpenstar\DependencyInjection\Config\Builder\ParametersConfigGroupBuilder;
+use Carpenstar\DependencyInjection\Config\Builder\ServicesConfigGroupBuilder;
 use Carpenstar\DependencyInjection\File\Abstracts\AFileLoader;
 
 class XmlFileLoader extends AFileLoader
 {
-
-    const CONFIG_BLOCK_PARAMETERS = "parameters";
-    const CONFIG_BLOCK_SERVICES = "services";
-
     /**
      * @return array
      * @throws \Exception
@@ -16,20 +14,20 @@ class XmlFileLoader extends AFileLoader
     public function load(): array
     {
         $config = [
-            self::CONFIG_BLOCK_PARAMETERS => [],
-            self::CONFIG_BLOCK_SERVICES => []
+            ParametersConfigGroupBuilder::CONFIG_PARAM_GROUP => [],
+            ServicesConfigGroupBuilder::CONFIG_PARAM_GROUP => []
         ];
 
         $xmlFile = file_get_contents($this->filePath);
         $xmlData = (array)(new \SimpleXMLElement($xmlFile));
 
-        foreach($xmlData[self::CONFIG_BLOCK_PARAMETERS] as $parameter) {
+        foreach($xmlData[ParametersConfigGroupBuilder::CONFIG_PARAM_GROUP] as $parameter) {
             /** @var \SimpleXMLElement $parameter */
            $paramAttributes = current($parameter->attributes());
-           $config[self::CONFIG_BLOCK_PARAMETERS][$paramAttributes["id"]] = $paramAttributes["value"];
+           $config[ParametersConfigGroupBuilder::CONFIG_PARAM_GROUP][$paramAttributes["id"]] = $paramAttributes["value"];
         }
 
-        foreach($xmlData[self::CONFIG_BLOCK_SERVICES] as $service) {
+        foreach($xmlData[ServicesConfigGroupBuilder::CONFIG_PARAM_GROUP] as $service) {
             /** @var \SimpleXMLElement $service */
             $serviceParameters = current($service->attributes());
             $serviceArray = [
@@ -49,7 +47,7 @@ class XmlFileLoader extends AFileLoader
                 $serviceArray["parameters"][] = $serviceArguments;
             }
 
-            $config[self::CONFIG_BLOCK_SERVICES][$serviceParameters["id"]] = $serviceArray;
+            $config[ServicesConfigGroupBuilder::CONFIG_PARAM_GROUP][$serviceParameters["id"]] = $serviceArray;
         }
 
         return $config;

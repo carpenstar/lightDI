@@ -4,6 +4,7 @@ use Carpenstar\DependencyInjection\Config\Builder\ConfigBuilder;
 use Carpenstar\DependencyInjection\Fabrics\ConfigBuilder\ConfigBuilderFabric;
 use Carpenstar\DependencyInjection\Fabrics\FileLoader\FileLoaderFabric;
 use Carpenstar\DependencyInjection\File\YmlFileLoader;
+use Carpenstar\DependencyInjection\File\XmlFileLoader;
 use Carpenstar\DependencyInjection\DependencyInjection;
 use Carpenstar\DependencyInjection\System\SystemConfig;
 use Carpenstar\Examples\ExampleSomething;
@@ -14,7 +15,13 @@ use Carpenstar\Examples\ExampleUser;
 class DependencyInjectionTest extends TestCase
 {
     const CONFIG_DATA_YML = [
-        "config_path" => "/app/example/config/config.xml"
+        "config_path" => "/app/example/config/config.yml",
+        "is_use_network_data" => true
+    ];
+
+    const CONFIG_DATA_XML = [
+        "config_path" => "/app/example/config/config.xml",
+        "is_use_network_data" => true
     ];
 
     public function testSysConfig()
@@ -33,6 +40,16 @@ class DependencyInjectionTest extends TestCase
         $ymlLoader->setFilePath(self::CONFIG_DATA_YML["config_path"]);
 
         $this->assertInstanceOf(YmlFileLoader::class, $ymlLoader);
+    }
+
+    /** Тестирование загрузчика XML-конфигурации сервисов и параметров */
+    public function testXmlFileLoader()
+    {
+        /** @var XmlFileLoader $ymlLoader */
+        $ymlLoader = FileLoaderFabric::make(XmlFileLoader::class);
+        $ymlLoader->setFilePath(self::CONFIG_DATA_XML["config_path"]);
+
+        $this->assertInstanceOf(XmlFileLoader::class, $ymlLoader);
     }
 
     /** Тестирование получения билдера объекта конфигурации */
@@ -68,7 +85,6 @@ class DependencyInjectionTest extends TestCase
      * Тестирование сервиса component.network.example.table
      * @depends testSysConfig
      */
-
     public function testComponentNetworkDependType(SystemConfig $sysConfig)
     {
         $depInjection = new DependencyInjection($sysConfig);
